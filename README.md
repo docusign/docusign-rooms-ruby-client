@@ -45,7 +45,7 @@ This client has the following external dependencies:
 
 ### Launchers
 
-DocuSign provides a sample application code referred to as a [Launcher](https://github.com/docusign/code-examples-ruby). The Launcher contains a set of 31 common use cases and associated source files. These examples use either DocuSign&#39;s [Authorization Code Grant](https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-code-grant) or [JSON Web Tokens (JWT)](https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-jsonwebtoken) flows.
+DocuSign provides a sample application code referred to as a [Launcher](https://github.com/docusign/code-examples-ruby). The Launcher contains a set of 6 common use cases and associated source files. These examples use either DocuSign&#39;s [Authorization Code Grant](https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-code-grant) or [JSON Web Tokens (JWT)](https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-jsonwebtoken) flows.
 
 ### Proof-of-concept applications
 
