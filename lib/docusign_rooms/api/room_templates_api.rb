@@ -14,11 +14,14 @@ require "uri"
 module DocuSign_Rooms
 
   class GetRoomTemplatesOptions
-    # Get all room templates you have access to for this office. Response includes Company and Region level templates. If onlyAssignable is true, and no officeId is provided, user's default office is assumed.
+    # Get all room templates you have access to for this office. Response includes Company and Region level  If onlyAssignable is true, and no officeId is provided, user's default office is assumed.
     attr_accessor :office_id
 
     # Get list of templates you have access to. Default value false.
     attr_accessor :only_assignable
+
+    # When set to true, only returns room templates that are not disabled.
+    attr_accessor :only_enabled
 
     # Number of room templates to return. Defaults to the maximum which is 100.
     attr_accessor :count
@@ -67,13 +70,14 @@ module DocuSign_Rooms
       query_params = {}
       query_params[:'officeId'] = options.office_id if !options.office_id.nil?
       query_params[:'onlyAssignable'] = options.only_assignable if !options.only_assignable.nil?
+      query_params[:'onlyEnabled'] = options.only_enabled if !options.only_enabled.nil?
       query_params[:'count'] = options.count if !options.count.nil?
       query_params[:'startPosition'] = options.start_position if !options.start_position.nil?
 
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}

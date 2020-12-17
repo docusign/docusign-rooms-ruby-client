@@ -23,6 +23,8 @@ module DocuSign_Rooms
 
     attr_accessor :prior_uri
 
+    attr_accessor :total_row_count
+
     attr_accessor :documents
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -33,6 +35,7 @@ module DocuSign_Rooms
         :'end_position' => :'endPosition',
         :'next_uri' => :'nextUri',
         :'prior_uri' => :'priorUri',
+        :'total_row_count' => :'totalRowCount',
         :'documents' => :'documents'
       }
     end
@@ -45,6 +48,7 @@ module DocuSign_Rooms
         :'end_position' => :'Integer',
         :'next_uri' => :'String',
         :'prior_uri' => :'String',
+        :'total_row_count' => :'Integer',
         :'documents' => :'Array<RoomDocument>'
       }
     end
@@ -77,6 +81,10 @@ module DocuSign_Rooms
         self.prior_uri = attributes[:'priorUri']
       end
 
+      if attributes.has_key?(:'totalRowCount')
+        self.total_row_count = attributes[:'totalRowCount']
+      end
+
       if attributes.has_key?(:'documents')
         if (value = attributes[:'documents']).is_a?(Array)
           self.documents = value
@@ -107,6 +115,7 @@ module DocuSign_Rooms
           end_position == o.end_position &&
           next_uri == o.next_uri &&
           prior_uri == o.prior_uri &&
+          total_row_count == o.total_row_count &&
           documents == o.documents
     end
 
@@ -119,7 +128,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [result_set_size, start_position, end_position, next_uri, prior_uri, documents].hash
+      [result_set_size, start_position, end_position, next_uri, prior_uri, total_row_count, documents].hash
     end
 
     # Builds the object from hash

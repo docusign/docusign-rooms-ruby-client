@@ -51,24 +51,22 @@ module DocuSign_Rooms
     # Creates a role.
     # 
     # @param account_id 
-    # @param role  
+    # @param body  (optional parameter)
     # @return [Role]
-    def create_role(account_id, role)
-      data, _status_code, _headers = create_role_with_http_info(account_id,  role)
+    def create_role(account_id, body)
+      data, _status_code, _headers = create_role_with_http_info(account_id,  body)
       return data
     end
 
     # Creates a role.
     # 
     # @param account_id 
-    # @param role  
+    # @param body  (optional parameter)
     # @return [Array<(Role, Fixnum, Hash)>] Role data, response status code and response headers
-    def create_role_with_http_info(account_id, role)
+    def create_role_with_http_info(account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: RolesApi.create_role ..."
       end
-      # verify the required parameter 'role' is set
-      fail ArgumentError, "Missing the required parameter 'role' when calling RolesApi.create_role" if role.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling RolesApi.create_role" if account_id.nil?
       # resource path
@@ -80,15 +78,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(role)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -135,7 +133,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -190,7 +188,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -245,7 +243,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -270,10 +268,10 @@ module DocuSign_Rooms
     # 
     # @param role_id 
     # @param account_id 
-    # @param role  
+    # @param body  (optional parameter)
     # @return [Role]
-    def update_role(role_id, account_id, role)
-      data, _status_code, _headers = update_role_with_http_info(role_id, account_id,  role)
+    def update_role(role_id, account_id, body)
+      data, _status_code, _headers = update_role_with_http_info(role_id, account_id,  body)
       return data
     end
 
@@ -281,16 +279,14 @@ module DocuSign_Rooms
     # 
     # @param role_id 
     # @param account_id 
-    # @param role  
+    # @param body  (optional parameter)
     # @return [Array<(Role, Fixnum, Hash)>] Role data, response status code and response headers
-    def update_role_with_http_info(role_id, account_id, role)
+    def update_role_with_http_info(role_id, account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: RolesApi.update_role ..."
       end
       # verify the required parameter 'role_id' is set
       fail ArgumentError, "Missing the required parameter 'role_id' when calling RolesApi.update_role" if role_id.nil?
-      # verify the required parameter 'role' is set
-      fail ArgumentError, "Missing the required parameter 'role' when calling RolesApi.update_role" if role.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling RolesApi.update_role" if account_id.nil?
       # resource path
@@ -302,15 +298,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(role)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
         :header_params => header_params,

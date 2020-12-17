@@ -39,24 +39,22 @@ module DocuSign_Rooms
     # Creates a new region for a company
     # 
     # @param account_id 
-    # @param region The information required to create a new region for the caller's company 
+    # @param body  (optional parameter)
     # @return [Region]
-    def create_region(account_id, region)
-      data, _status_code, _headers = create_region_with_http_info(account_id,  region)
+    def create_region(account_id, body)
+      data, _status_code, _headers = create_region_with_http_info(account_id,  body)
       return data
     end
 
     # Creates a new region for a company
     # 
     # @param account_id 
-    # @param region The information required to create a new region for the caller's company 
+    # @param body  (optional parameter)
     # @return [Array<(Region, Fixnum, Hash)>] Region data, response status code and response headers
-    def create_region_with_http_info(account_id, region)
+    def create_region_with_http_info(account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: RegionsApi.create_region ..."
       end
-      # verify the required parameter 'region' is set
-      fail ArgumentError, "Missing the required parameter 'region' when calling RegionsApi.create_region" if region.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling RegionsApi.create_region" if account_id.nil?
       # resource path
@@ -68,15 +66,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(region)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -123,7 +121,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -175,7 +173,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -228,7 +226,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -249,7 +247,7 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Get account regions.
+    # Get account 
     # 
     # @param account_id 
     # @param DocuSign_Rooms::GetRegionsOptions Options for modifying the behavior of the function.
@@ -259,7 +257,7 @@ module DocuSign_Rooms
       return data
     end
 
-    # Get account regions.
+    # Get account 
     # 
     # @param account_id 
     # @param DocuSign_Rooms::GetRegionsOptions Options for modifying the behavior of the function.
@@ -282,7 +280,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}

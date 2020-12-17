@@ -34,10 +34,10 @@ module DocuSign_Rooms
     # 
     # @param document_id 
     # @param account_id 
-    # @param document_user_for_create  
+    # @param body  (optional parameter)
     # @return [DocumentUser]
-    def create_document_user(document_id, account_id, document_user_for_create)
-      data, _status_code, _headers = create_document_user_with_http_info(document_id, account_id,  document_user_for_create)
+    def create_document_user(document_id, account_id, body)
+      data, _status_code, _headers = create_document_user_with_http_info(document_id, account_id,  body)
       return data
     end
 
@@ -45,16 +45,14 @@ module DocuSign_Rooms
     # 
     # @param document_id 
     # @param account_id 
-    # @param document_user_for_create  
+    # @param body  (optional parameter)
     # @return [Array<(DocumentUser, Fixnum, Hash)>] DocumentUser data, response status code and response headers
-    def create_document_user_with_http_info(document_id, account_id, document_user_for_create)
+    def create_document_user_with_http_info(document_id, account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: DocumentsApi.create_document_user ..."
       end
       # verify the required parameter 'document_id' is set
       fail ArgumentError, "Missing the required parameter 'document_id' when calling DocumentsApi.create_document_user" if document_id.nil?
-      # verify the required parameter 'document_user_for_create' is set
-      fail ArgumentError, "Missing the required parameter 'document_user_for_create' when calling DocumentsApi.create_document_user" if document_user_for_create.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling DocumentsApi.create_document_user" if account_id.nil?
       # resource path
@@ -66,15 +64,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(document_user_for_create)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -121,7 +119,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -176,7 +174,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}

@@ -33,28 +33,6 @@ module DocuSign_Rooms
 
     attr_accessor :redirect_url
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -78,7 +56,7 @@ module DocuSign_Rooms
         :'last_name' => :'String',
         :'email' => :'String',
         :'role_id' => :'Integer',
-        :'access_level' => :'String',
+        :'access_level' => :'AccessLevel',
         :'default_office_id' => :'Integer',
         :'regions' => :'Array<Integer>',
         :'offices' => :'Array<Integer>',
@@ -183,21 +161,9 @@ module DocuSign_Rooms
       return false if @email.nil?
       return false if @role_id.nil?
       return false if @access_level.nil?
-      access_level_validator = EnumAttributeValidator.new('String', ['Contributor', 'Office', 'Region', 'Company', 'Admin'])
-      return false unless access_level_validator.valid?(@access_level)
       return false if @default_office_id.nil?
       return false if @e_sign_permission_profile_id.nil?
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] access_level Object to be assigned
-    def access_level=(access_level)
-      validator = EnumAttributeValidator.new('String', ['Contributor', 'Office', 'Region', 'Company', 'Admin'])
-      unless validator.valid?(access_level)
-        fail ArgumentError, 'invalid value for "access_level", must be one of #{validator.allowable_values}.'
-      end
-      @access_level = access_level
     end
 
     # Checks equality by comparing each attribute.

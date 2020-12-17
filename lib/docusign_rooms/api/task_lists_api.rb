@@ -25,10 +25,10 @@ module DocuSign_Rooms
     # 
     # @param room_id Room ID.
     # @param account_id 
-    # @param task_list Details for task list creation. 
+    # @param body  (optional parameter)
     # @return [TaskList]
-    def create_task_list(room_id, account_id, task_list)
-      data, _status_code, _headers = create_task_list_with_http_info(room_id, account_id,  task_list)
+    def create_task_list(room_id, account_id, body)
+      data, _status_code, _headers = create_task_list_with_http_info(room_id, account_id,  body)
       return data
     end
 
@@ -36,16 +36,14 @@ module DocuSign_Rooms
     # 
     # @param room_id Room ID.
     # @param account_id 
-    # @param task_list Details for task list creation. 
+    # @param body  (optional parameter)
     # @return [Array<(TaskList, Fixnum, Hash)>] TaskList data, response status code and response headers
-    def create_task_list_with_http_info(room_id, account_id, task_list)
+    def create_task_list_with_http_info(room_id, account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: TaskListsApi.create_task_list ..."
       end
       # verify the required parameter 'room_id' is set
       fail ArgumentError, "Missing the required parameter 'room_id' when calling TaskListsApi.create_task_list" if room_id.nil?
-      # verify the required parameter 'task_list' is set
-      fail ArgumentError, "Missing the required parameter 'task_list' when calling TaskListsApi.create_task_list" if task_list.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling TaskListsApi.create_task_list" if account_id.nil?
       # resource path
@@ -57,15 +55,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(task_list)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -80,7 +78,7 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Deletes a task list. If there are attached documents they will remain in the associated room.
+    # Deletes a task list. If there are attached documents they will remain in the associated 
     # 
     # @param task_list_id Task List ID
     # @param account_id 
@@ -90,7 +88,7 @@ module DocuSign_Rooms
       return nil
     end
 
-    # Deletes a task list. If there are attached documents they will remain in the associated room.
+    # Deletes a task list. If there are attached documents they will remain in the associated 
     # 
     # @param task_list_id Task List ID
     # @param account_id 
@@ -112,7 +110,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -132,7 +130,7 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Returns the summary for all viewable task lists in a room.
+    # Returns the summary for all viewable task lists in a 
     # 
     # @param room_id Room ID
     # @param account_id 
@@ -142,7 +140,7 @@ module DocuSign_Rooms
       return data
     end
 
-    # Returns the summary for all viewable task lists in a room.
+    # Returns the summary for all viewable task lists in a 
     # 
     # @param room_id Room ID
     # @param account_id 
@@ -164,7 +162,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}

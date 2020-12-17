@@ -21,6 +21,8 @@ module DocuSign_Rooms
 
     attr_accessor :office_id
 
+    attr_accessor :company_type_id
+
     # Required when the company is tightly bound to an eSign account; otherwise ignored.
     attr_accessor :e_sign_permission_profile_id
 
@@ -31,6 +33,7 @@ module DocuSign_Rooms
         :'last_name' => :'lastName',
         :'email' => :'email',
         :'office_id' => :'officeId',
+        :'company_type_id' => :'companyTypeId',
         :'e_sign_permission_profile_id' => :'eSignPermissionProfileId'
       }
     end
@@ -42,6 +45,7 @@ module DocuSign_Rooms
         :'last_name' => :'String',
         :'email' => :'String',
         :'office_id' => :'Integer',
+        :'company_type_id' => :'String',
         :'e_sign_permission_profile_id' => :'String'
       }
     end
@@ -68,6 +72,10 @@ module DocuSign_Rooms
 
       if attributes.has_key?(:'officeId')
         self.office_id = attributes[:'officeId']
+      end
+
+      if attributes.has_key?(:'companyTypeId')
+        self.company_type_id = attributes[:'companyTypeId']
       end
 
       if attributes.has_key?(:'eSignPermissionProfileId')
@@ -117,6 +125,7 @@ module DocuSign_Rooms
           last_name == o.last_name &&
           email == o.email &&
           office_id == o.office_id &&
+          company_type_id == o.company_type_id &&
           e_sign_permission_profile_id == o.e_sign_permission_profile_id
     end
 
@@ -129,7 +138,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, last_name, email, office_id, e_sign_permission_profile_id].hash
+      [first_name, last_name, email, office_id, company_type_id, e_sign_permission_profile_id].hash
     end
 
     # Builds the object from hash

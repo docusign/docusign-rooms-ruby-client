@@ -27,6 +27,10 @@ module DocuSign_Rooms
 
     attr_accessor :title_id
 
+    attr_accessor :company_name
+
+    attr_accessor :role_name
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -36,7 +40,9 @@ module DocuSign_Rooms
         :'last_name' => :'lastName',
         :'transaction_side_id' => :'transactionSideId',
         :'role_id' => :'roleId',
-        :'title_id' => :'titleId'
+        :'title_id' => :'titleId',
+        :'company_name' => :'companyName',
+        :'role_name' => :'roleName'
       }
     end
 
@@ -49,7 +55,9 @@ module DocuSign_Rooms
         :'last_name' => :'String',
         :'transaction_side_id' => :'String',
         :'role_id' => :'Integer',
-        :'title_id' => :'Integer'
+        :'title_id' => :'Integer',
+        :'company_name' => :'String',
+        :'role_name' => :'String'
       }
     end
 
@@ -88,6 +96,14 @@ module DocuSign_Rooms
       if attributes.has_key?(:'titleId')
         self.title_id = attributes[:'titleId']
       end
+
+      if attributes.has_key?(:'companyName')
+        self.company_name = attributes[:'companyName']
+      end
+
+      if attributes.has_key?(:'roleName')
+        self.role_name = attributes[:'roleName']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -114,7 +130,9 @@ module DocuSign_Rooms
           last_name == o.last_name &&
           transaction_side_id == o.transaction_side_id &&
           role_id == o.role_id &&
-          title_id == o.title_id
+          title_id == o.title_id &&
+          company_name == o.company_name &&
+          role_name == o.role_name
     end
 
     # @see the `==` method
@@ -126,7 +144,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [user_id, email, first_name, last_name, transaction_side_id, role_id, title_id].hash
+      [user_id, email, first_name, last_name, transaction_side_id, role_id, title_id, company_name, role_name].hash
     end
 
     # Builds the object from hash
