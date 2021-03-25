@@ -33,6 +33,221 @@ module DocuSign_Rooms
       @api_client = api_client
     end
 
+    # Assigns a form to a form group.
+    # 
+    # @param form_group_id 
+    # @param account_id 
+    # @param body  (optional parameter)
+    # @return [FormGroupFormToAssign]
+    def assign_form_group_form(form_group_id, account_id, body)
+      data, _status_code, _headers = assign_form_group_form_with_http_info(form_group_id, account_id,  body)
+      return data
+    end
+
+    # Assigns a form to a form group.
+    # 
+    # @param form_group_id 
+    # @param account_id 
+    # @param body  (optional parameter)
+    # @return [Array<(FormGroupFormToAssign, Fixnum, Hash)>] FormGroupFormToAssign data, response status code and response headers
+    def assign_form_group_form_with_http_info(form_group_id, account_id, body)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: FormGroupsApi.assign_form_group_form ..."
+      end
+      # verify the required parameter 'form_group_id' is set
+      fail ArgumentError, "Missing the required parameter 'form_group_id' when calling FormGroupsApi.assign_form_group_form" if form_group_id.nil?
+      # verify the required parameter 'account_id' is set
+      fail ArgumentError, "Missing the required parameter 'account_id' when calling FormGroupsApi.assign_form_group_form" if account_id.nil?
+      # resource path
+      local_var_path = "/v2/accounts/{accountId}/form_groups/{formGroupId}/assign_form".sub('{format}','json').sub('{' + 'formGroupId' + '}', form_group_id.to_s).sub('{' + 'accountId' + '}', account_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(body)
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'FormGroupFormToAssign')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FormGroupsApi#assign_form_group_form\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Creates a form group.
+    # 
+    # @param account_id 
+    # @param body  (optional parameter)
+    # @return [FormGroup]
+    def create_form_group(account_id, body)
+      data, _status_code, _headers = create_form_group_with_http_info(account_id,  body)
+      return data
+    end
+
+    # Creates a form group.
+    # 
+    # @param account_id 
+    # @param body  (optional parameter)
+    # @return [Array<(FormGroup, Fixnum, Hash)>] FormGroup data, response status code and response headers
+    def create_form_group_with_http_info(account_id, body)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: FormGroupsApi.create_form_group ..."
+      end
+      # verify the required parameter 'account_id' is set
+      fail ArgumentError, "Missing the required parameter 'account_id' when calling FormGroupsApi.create_form_group" if account_id.nil?
+      # resource path
+      local_var_path = "/v2/accounts/{accountId}/form_groups".sub('{format}','json').sub('{' + 'accountId' + '}', account_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(body)
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'FormGroup')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FormGroupsApi#create_form_group\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Deletes a form group.
+    # 
+    # @param form_group_id 
+    # @param account_id 
+    # @return [nil]
+    def delete_form_group(form_group_id, account_id)
+      delete_form_group_with_http_info(form_group_id, account_id)
+      return nil
+    end
+
+    # Deletes a form group.
+    # 
+    # @param form_group_id 
+    # @param account_id 
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def delete_form_group_with_http_info(form_group_id, account_id)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: FormGroupsApi.delete_form_group ..."
+      end
+      # verify the required parameter 'form_group_id' is set
+      fail ArgumentError, "Missing the required parameter 'form_group_id' when calling FormGroupsApi.delete_form_group" if form_group_id.nil?
+      # verify the required parameter 'account_id' is set
+      fail ArgumentError, "Missing the required parameter 'account_id' when calling FormGroupsApi.delete_form_group" if account_id.nil?
+      # resource path
+      local_var_path = "/v2/accounts/{accountId}/form_groups/{formGroupId}".sub('{format}','json').sub('{' + 'formGroupId' + '}', form_group_id.to_s).sub('{' + 'accountId' + '}', account_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FormGroupsApi#delete_form_group\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Gets a form group.
+    # 
+    # @param form_group_id 
+    # @param account_id 
+    # @return [FormGroup]
+    def get_form_group(form_group_id, account_id)
+      data, _status_code, _headers = get_form_group_with_http_info(form_group_id, account_id)
+      return data
+    end
+
+    # Gets a form group.
+    # 
+    # @param form_group_id 
+    # @param account_id 
+    # @return [Array<(FormGroup, Fixnum, Hash)>] FormGroup data, response status code and response headers
+    def get_form_group_with_http_info(form_group_id, account_id)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: FormGroupsApi.get_form_group ..."
+      end
+      # verify the required parameter 'form_group_id' is set
+      fail ArgumentError, "Missing the required parameter 'form_group_id' when calling FormGroupsApi.get_form_group" if form_group_id.nil?
+      # verify the required parameter 'account_id' is set
+      fail ArgumentError, "Missing the required parameter 'account_id' when calling FormGroupsApi.get_form_group" if account_id.nil?
+      # resource path
+      local_var_path = "/v2/accounts/{accountId}/form_groups/{formGroupId}".sub('{format}','json').sub('{' + 'formGroupId' + '}', form_group_id.to_s).sub('{' + 'accountId' + '}', account_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'FormGroup')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FormGroupsApi#get_form_group\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Get account Form Groups.
     # 
     # @param account_id 
@@ -65,7 +280,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -82,6 +297,231 @@ module DocuSign_Rooms
         :return_type => 'FormGroupSummaryList')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: FormGroupsApi#get_form_groups\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Assign office to a form group so the specified office has access to the form group.
+    # 
+    # @param form_group_id 
+    # @param office_id 
+    # @param account_id 
+    # @return [nil]
+    def grant_office_access_to_form_group(form_group_id, office_id, account_id)
+      grant_office_access_to_form_group_with_http_info(form_group_id, office_id, account_id)
+      return nil
+    end
+
+    # Assign office to a form group so the specified office has access to the form group.
+    # 
+    # @param form_group_id 
+    # @param office_id 
+    # @param account_id 
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def grant_office_access_to_form_group_with_http_info(form_group_id, office_id, account_id)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: FormGroupsApi.grant_office_access_to_form_group ..."
+      end
+      # verify the required parameter 'form_group_id' is set
+      fail ArgumentError, "Missing the required parameter 'form_group_id' when calling FormGroupsApi.grant_office_access_to_form_group" if form_group_id.nil?
+      # verify the required parameter 'office_id' is set
+      fail ArgumentError, "Missing the required parameter 'office_id' when calling FormGroupsApi.grant_office_access_to_form_group" if office_id.nil?
+      # verify the required parameter 'account_id' is set
+      fail ArgumentError, "Missing the required parameter 'account_id' when calling FormGroupsApi.grant_office_access_to_form_group" if account_id.nil?
+      # resource path
+      local_var_path = "/v2/accounts/{accountId}/form_groups/{formGroupId}/grant_office_access/{officeId}".sub('{format}','json').sub('{' + 'formGroupId' + '}', form_group_id.to_s).sub('{' + 'officeId' + '}', office_id.to_s).sub('{' + 'accountId' + '}', account_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FormGroupsApi#grant_office_access_to_form_group\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Removes a form from a form group.
+    # 
+    # @param form_group_id 
+    # @param form_id 
+    # @param account_id 
+    # @return [nil]
+    def remove_form_group_form(form_group_id, form_id, account_id)
+      remove_form_group_form_with_http_info(form_group_id, form_id, account_id)
+      return nil
+    end
+
+    # Removes a form from a form group.
+    # 
+    # @param form_group_id 
+    # @param form_id 
+    # @param account_id 
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def remove_form_group_form_with_http_info(form_group_id, form_id, account_id)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: FormGroupsApi.remove_form_group_form ..."
+      end
+      # verify the required parameter 'form_group_id' is set
+      fail ArgumentError, "Missing the required parameter 'form_group_id' when calling FormGroupsApi.remove_form_group_form" if form_group_id.nil?
+      # verify the required parameter 'form_id' is set
+      fail ArgumentError, "Missing the required parameter 'form_id' when calling FormGroupsApi.remove_form_group_form" if form_id.nil?
+      # verify the required parameter 'account_id' is set
+      fail ArgumentError, "Missing the required parameter 'account_id' when calling FormGroupsApi.remove_form_group_form" if account_id.nil?
+      # resource path
+      local_var_path = "/v2/accounts/{accountId}/form_groups/{formGroupId}/unassign_form/{formId}".sub('{format}','json').sub('{' + 'formGroupId' + '}', form_group_id.to_s).sub('{' + 'formId' + '}', form_id.to_s).sub('{' + 'accountId' + '}', account_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FormGroupsApi#remove_form_group_form\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Renames a form group.
+    # 
+    # @param form_group_id 
+    # @param account_id 
+    # @param body  (optional parameter)
+    # @return [FormGroup]
+    def rename_form_group(form_group_id, account_id, body)
+      data, _status_code, _headers = rename_form_group_with_http_info(form_group_id, account_id,  body)
+      return data
+    end
+
+    # Renames a form group.
+    # 
+    # @param form_group_id 
+    # @param account_id 
+    # @param body  (optional parameter)
+    # @return [Array<(FormGroup, Fixnum, Hash)>] FormGroup data, response status code and response headers
+    def rename_form_group_with_http_info(form_group_id, account_id, body)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: FormGroupsApi.rename_form_group ..."
+      end
+      # verify the required parameter 'form_group_id' is set
+      fail ArgumentError, "Missing the required parameter 'form_group_id' when calling FormGroupsApi.rename_form_group" if form_group_id.nil?
+      # verify the required parameter 'account_id' is set
+      fail ArgumentError, "Missing the required parameter 'account_id' when calling FormGroupsApi.rename_form_group" if account_id.nil?
+      # resource path
+      local_var_path = "/v2/accounts/{accountId}/form_groups/{formGroupId}".sub('{format}','json').sub('{' + 'formGroupId' + '}', form_group_id.to_s).sub('{' + 'accountId' + '}', account_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(body)
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'FormGroup')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FormGroupsApi#rename_form_group\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Remove office to a form group so the specified office doesn't have access to the form group.
+    # 
+    # @param form_group_id 
+    # @param office_id 
+    # @param account_id 
+    # @return [nil]
+    def revoke_office_access_from_form_group(form_group_id, office_id, account_id)
+      revoke_office_access_from_form_group_with_http_info(form_group_id, office_id, account_id)
+      return nil
+    end
+
+    # Remove office to a form group so the specified office doesn&#39;t have access to the form group.
+    # 
+    # @param form_group_id 
+    # @param office_id 
+    # @param account_id 
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def revoke_office_access_from_form_group_with_http_info(form_group_id, office_id, account_id)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: FormGroupsApi.revoke_office_access_from_form_group ..."
+      end
+      # verify the required parameter 'form_group_id' is set
+      fail ArgumentError, "Missing the required parameter 'form_group_id' when calling FormGroupsApi.revoke_office_access_from_form_group" if form_group_id.nil?
+      # verify the required parameter 'office_id' is set
+      fail ArgumentError, "Missing the required parameter 'office_id' when calling FormGroupsApi.revoke_office_access_from_form_group" if office_id.nil?
+      # verify the required parameter 'account_id' is set
+      fail ArgumentError, "Missing the required parameter 'account_id' when calling FormGroupsApi.revoke_office_access_from_form_group" if account_id.nil?
+      # resource path
+      local_var_path = "/v2/accounts/{accountId}/form_groups/{formGroupId}/revoke_office_access/{officeId}".sub('{format}','json').sub('{' + 'formGroupId' + '}', form_group_id.to_s).sub('{' + 'officeId' + '}', office_id.to_s).sub('{' + 'accountId' + '}', account_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FormGroupsApi#revoke_office_access_from_form_group\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

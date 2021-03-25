@@ -24,24 +24,22 @@ module DocuSign_Rooms
     # Creates an external form fill session.
     # 
     # @param account_id 
-    # @param form_fill_session_for_create  
+    # @param body  (optional parameter)
     # @return [ExternalFormFillSession]
-    def create_external_form_fill_session(account_id, form_fill_session_for_create)
-      data, _status_code, _headers = create_external_form_fill_session_with_http_info(account_id,  form_fill_session_for_create)
+    def create_external_form_fill_session(account_id, body)
+      data, _status_code, _headers = create_external_form_fill_session_with_http_info(account_id,  body)
       return data
     end
 
     # Creates an external form fill session.
     # 
     # @param account_id 
-    # @param form_fill_session_for_create  
+    # @param body  (optional parameter)
     # @return [Array<(ExternalFormFillSession, Fixnum, Hash)>] ExternalFormFillSession data, response status code and response headers
-    def create_external_form_fill_session_with_http_info(account_id, form_fill_session_for_create)
+    def create_external_form_fill_session_with_http_info(account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalFormFillSessionsApi.create_external_form_fill_session ..."
       end
-      # verify the required parameter 'form_fill_session_for_create' is set
-      fail ArgumentError, "Missing the required parameter 'form_fill_session_for_create' when calling ExternalFormFillSessionsApi.create_external_form_fill_session" if form_fill_session_for_create.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling ExternalFormFillSessionsApi.create_external_form_fill_session" if account_id.nil?
       # resource path
@@ -53,15 +51,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(form_fill_session_for_create)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,

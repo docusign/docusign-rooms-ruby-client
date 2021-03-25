@@ -42,24 +42,22 @@ module DocuSign_Rooms
     # Create an office.
     # 
     # @param account_id 
-    # @param office  
+    # @param body  (optional parameter)
     # @return [Office]
-    def create_office(account_id, office)
-      data, _status_code, _headers = create_office_with_http_info(account_id,  office)
+    def create_office(account_id, body)
+      data, _status_code, _headers = create_office_with_http_info(account_id,  body)
       return data
     end
 
     # Create an office.
     # 
     # @param account_id 
-    # @param office  
+    # @param body  (optional parameter)
     # @return [Array<(Office, Fixnum, Hash)>] Office data, response status code and response headers
-    def create_office_with_http_info(account_id, office)
+    def create_office_with_http_info(account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OfficesApi.create_office ..."
       end
-      # verify the required parameter 'office' is set
-      fail ArgumentError, "Missing the required parameter 'office' when calling OfficesApi.create_office" if office.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling OfficesApi.create_office" if account_id.nil?
       # resource path
@@ -71,15 +69,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(office)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -126,7 +124,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -178,7 +176,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -199,7 +197,7 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Get all offices.
+    # Get all 
     # 
     # @param account_id 
     # @param DocuSign_Rooms::GetOfficesOptions Options for modifying the behavior of the function.
@@ -209,7 +207,7 @@ module DocuSign_Rooms
       return data
     end
 
-    # Get all offices.
+    # Get all 
     # 
     # @param account_id 
     # @param DocuSign_Rooms::GetOfficesOptions Options for modifying the behavior of the function.
@@ -233,7 +231,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -286,7 +284,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}

@@ -25,6 +25,8 @@ module DocuSign_Rooms
 
     attr_accessor :prior_uri
 
+    attr_accessor :total_row_count
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -33,7 +35,8 @@ module DocuSign_Rooms
         :'start_position' => :'startPosition',
         :'end_position' => :'endPosition',
         :'next_uri' => :'nextUri',
-        :'prior_uri' => :'priorUri'
+        :'prior_uri' => :'priorUri',
+        :'total_row_count' => :'totalRowCount'
       }
     end
 
@@ -45,7 +48,8 @@ module DocuSign_Rooms
         :'start_position' => :'Integer',
         :'end_position' => :'Integer',
         :'next_uri' => :'String',
-        :'prior_uri' => :'String'
+        :'prior_uri' => :'String',
+        :'total_row_count' => :'Integer'
       }
     end
 
@@ -82,6 +86,10 @@ module DocuSign_Rooms
       if attributes.has_key?(:'priorUri')
         self.prior_uri = attributes[:'priorUri']
       end
+
+      if attributes.has_key?(:'totalRowCount')
+        self.total_row_count = attributes[:'totalRowCount']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -107,7 +115,8 @@ module DocuSign_Rooms
           start_position == o.start_position &&
           end_position == o.end_position &&
           next_uri == o.next_uri &&
-          prior_uri == o.prior_uri
+          prior_uri == o.prior_uri &&
+          total_row_count == o.total_row_count
     end
 
     # @see the `==` method
@@ -119,7 +128,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [task_list_templates, result_set_size, start_position, end_position, next_uri, prior_uri].hash
+      [task_list_templates, result_set_size, start_position, end_position, next_uri, prior_uri, total_row_count].hash
     end
 
     # Builds the object from hash

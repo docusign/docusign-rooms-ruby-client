@@ -29,6 +29,8 @@ module DocuSign_Rooms
 
     attr_accessor :is_signed
 
+    attr_accessor :content_type
+
     attr_accessor :base64_contents
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -42,6 +44,7 @@ module DocuSign_Rooms
         :'folder_id' => :'folderId',
         :'created_date' => :'createdDate',
         :'is_signed' => :'isSigned',
+        :'content_type' => :'contentType',
         :'base64_contents' => :'base64Contents'
       }
     end
@@ -57,6 +60,7 @@ module DocuSign_Rooms
         :'folder_id' => :'Integer',
         :'created_date' => :'DateTime',
         :'is_signed' => :'BOOLEAN',
+        :'content_type' => :'String',
         :'base64_contents' => :'String'
       }
     end
@@ -101,6 +105,10 @@ module DocuSign_Rooms
         self.is_signed = attributes[:'isSigned']
       end
 
+      if attributes.has_key?(:'contentType')
+        self.content_type = attributes[:'contentType']
+      end
+
       if attributes.has_key?(:'base64Contents')
         self.base64_contents = attributes[:'base64Contents']
       end
@@ -142,6 +150,7 @@ module DocuSign_Rooms
           folder_id == o.folder_id &&
           created_date == o.created_date &&
           is_signed == o.is_signed &&
+          content_type == o.content_type &&
           base64_contents == o.base64_contents
     end
 
@@ -154,7 +163,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [document_id, name, room_id, owner_id, size, folder_id, created_date, is_signed, base64_contents].hash
+      [document_id, name, room_id, owner_id, size, folder_id, created_date, is_signed, content_type, base64_contents].hash
     end
 
     # Builds the object from hash

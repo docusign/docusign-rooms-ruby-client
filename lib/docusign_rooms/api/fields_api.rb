@@ -63,12 +63,12 @@ module DocuSign_Rooms
 
       # query parameters
       query_params = {}
-      query_params[:'fieldsCustomDataFilters'] = @api_client.build_collection_param(options.fields_custom_data_filters, :multi) if !options.fields_custom_data_filters.nil?
+      query_params[:'fieldsCustomDataFilters'] = @api_client.build_collection_param(options.fields_custom_data_filters, :csv) if !options.fields_custom_data_filters.nil?
 
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}

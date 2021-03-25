@@ -53,7 +53,7 @@ module DocuSign_Rooms
         :'is_external' => :'BOOLEAN',
         :'created_date' => :'DateTime',
         :'is_assigned' => :'BOOLEAN',
-        :'permissions' => :'NullablePermissions'
+        :'permissions' => :'Permissions'
       }
     end
 

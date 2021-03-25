@@ -7,7 +7,7 @@
 ## Requirements
 
 - Ruby 1.9+
-- Free [Developer Account](https://go.docusign.com/sandbox/productshot/?elqCampaignId=16531)
+- Free [Developer Sandbox](https://go.docusign.com/sandbox/productshot/?elqCampaignId=16531)
 
 ## Compatibility
 
@@ -45,7 +45,11 @@ This client has the following external dependencies:
 
 ### Launchers
 
-DocuSign provides a sample application code referred to as a [Launcher](https://github.com/docusign/code-examples-ruby). The Launcher contains a set of 6 common use cases and associated source files. These examples use either DocuSign&#39;s [Authorization Code Grant](https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-code-grant) or [JSON Web Tokens (JWT)](https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-jsonwebtoken) flows.
+DocuSign provides a sample application code referred to as a [Launcher](https://github.com/docusign/code-examples-ruby). The Launcher contains a set of 31 common use cases and associated source files. These examples use either DocuSign&#39;s [Authorization Code Grant](https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-code-grant) or [JSON Web Tokens (JWT)](https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-jsonwebtoken) flows.
+
+### Proof-of-concept applications
+
+If your goal is to create a proof-of-concept application, DocuSign provides a set of [Quick Start](https://github.com/docusign/qs-ruby) examples. The Quick Start examples are meant to be used with DocuSign's [OAuth Token Generator](https://developers.docusign.com/oauth-token-generator), which will allow you to generate tokens for the Demo/Sandbox environment only. These tokens last for eight hours and will enable you to build your proof-of-concept application without the need to fully implement an OAuth solution.
 
 ## OAuth Implementations
 

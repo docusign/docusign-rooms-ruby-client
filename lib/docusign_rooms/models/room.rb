@@ -69,7 +69,7 @@ module DocuSign_Rooms
         :'created_by_user_id' => :'Integer',
         :'rejected_by_user_id' => :'Integer',
         :'closed_status_id' => :'String',
-        :'field_data' => :'NullableFieldData'
+        :'field_data' => :'FieldData'
       }
     end
 

@@ -108,31 +108,29 @@ module DocuSign_Rooms
       @api_client = api_client
     end
 
-    # Add a document to a room.
+    # Add a document to a 
     # 
     # @param room_id 
     # @param account_id 
-    # @param document  
+    # @param body  (optional parameter)
     # @return [RoomDocument]
-    def add_document_to_room(room_id, account_id, document)
-      data, _status_code, _headers = add_document_to_room_with_http_info(room_id, account_id,  document)
+    def add_document_to_room(room_id, account_id, body)
+      data, _status_code, _headers = add_document_to_room_with_http_info(room_id, account_id,  body)
       return data
     end
 
-    # Add a document to a room.
+    # Add a document to a 
     # 
     # @param room_id 
     # @param account_id 
-    # @param document  
+    # @param body  (optional parameter)
     # @return [Array<(RoomDocument, Fixnum, Hash)>] RoomDocument data, response status code and response headers
-    def add_document_to_room_with_http_info(room_id, account_id, document)
+    def add_document_to_room_with_http_info(room_id, account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: RoomsApi.add_document_to_room ..."
       end
       # verify the required parameter 'room_id' is set
       fail ArgumentError, "Missing the required parameter 'room_id' when calling RoomsApi.add_document_to_room" if room_id.nil?
-      # verify the required parameter 'document' is set
-      fail ArgumentError, "Missing the required parameter 'document' when calling RoomsApi.add_document_to_room" if document.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling RoomsApi.add_document_to_room" if account_id.nil?
       # resource path
@@ -144,15 +142,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(document)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -190,8 +188,6 @@ module DocuSign_Rooms
       fail ArgumentError, "Missing the required parameter 'room_id' when calling RoomsApi.add_document_to_room_via_file_upload" if room_id.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling RoomsApi.add_document_to_room_via_file_upload" if account_id.nil?
-      # verify the required parameter 'file' is set
-      fail ArgumentError, "Missing the required parameter 'file' when calling RoomsApi.add_document_to_room_via_file_upload" if file.nil?
       # resource path
       local_var_path = "/v2/accounts/{accountId}/rooms/{roomId}/documents/contents".sub('{format}','json').sub('{' + 'roomId' + '}', room_id.to_s).sub('{' + 'accountId' + '}', account_id.to_s)
 
@@ -201,13 +197,13 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/form-data'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['multipart/form-data'])
 
       # form parameters
       form_params = {}
-      form_params["file"] = file
+      form_params["file"] = options.file if !options.paramName.nil?
 
       # http body (model)
       post_body = nil
@@ -229,10 +225,10 @@ module DocuSign_Rooms
     # 
     # @param room_id Id of the room to which the DocuSign Form is being added
     # @param account_id 
-    # @param form_for_add Contains information about the form being added 
+    # @param body  (optional parameter)
     # @return [RoomDocument]
-    def add_form_to_room(room_id, account_id, form_for_add)
-      data, _status_code, _headers = add_form_to_room_with_http_info(room_id, account_id,  form_for_add)
+    def add_form_to_room(room_id, account_id, body)
+      data, _status_code, _headers = add_form_to_room_with_http_info(room_id, account_id,  body)
       return data
     end
 
@@ -240,16 +236,14 @@ module DocuSign_Rooms
     # 
     # @param room_id Id of the room to which the DocuSign Form is being added
     # @param account_id 
-    # @param form_for_add Contains information about the form being added 
+    # @param body  (optional parameter)
     # @return [Array<(RoomDocument, Fixnum, Hash)>] RoomDocument data, response status code and response headers
-    def add_form_to_room_with_http_info(room_id, account_id, form_for_add)
+    def add_form_to_room_with_http_info(room_id, account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: RoomsApi.add_form_to_room ..."
       end
       # verify the required parameter 'room_id' is set
       fail ArgumentError, "Missing the required parameter 'room_id' when calling RoomsApi.add_form_to_room" if room_id.nil?
-      # verify the required parameter 'form_for_add' is set
-      fail ArgumentError, "Missing the required parameter 'form_for_add' when calling RoomsApi.add_form_to_room" if form_for_add.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling RoomsApi.add_form_to_room" if account_id.nil?
       # resource path
@@ -261,15 +255,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(form_for_add)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -287,24 +281,22 @@ module DocuSign_Rooms
     # Creates a new Room
     # 
     # @param account_id 
-    # @param room_for_create The properties of the new room 
+    # @param body  (optional parameter)
     # @return [Room]
-    def create_room(account_id, room_for_create)
-      data, _status_code, _headers = create_room_with_http_info(account_id,  room_for_create)
+    def create_room(account_id, body)
+      data, _status_code, _headers = create_room_with_http_info(account_id,  body)
       return data
     end
 
     # Creates a new Room
     # 
     # @param account_id 
-    # @param room_for_create The properties of the new room 
+    # @param body  (optional parameter)
     # @return [Array<(Room, Fixnum, Hash)>] Room data, response status code and response headers
-    def create_room_with_http_info(account_id, room_for_create)
+    def create_room_with_http_info(account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: RoomsApi.create_room ..."
       end
-      # verify the required parameter 'room_for_create' is set
-      fail ArgumentError, "Missing the required parameter 'room_for_create' when calling RoomsApi.create_room" if room_for_create.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling RoomsApi.create_room" if account_id.nil?
       # resource path
@@ -316,15 +308,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(room_for_create)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -371,7 +363,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -429,7 +421,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -486,7 +478,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -507,7 +499,7 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Gets information about the given room.
+    # Gets information about the given 
     # 
     # @param room_id 
     # @param account_id 
@@ -518,7 +510,7 @@ module DocuSign_Rooms
       return data
     end
 
-    # Gets information about the given room.
+    # Gets information about the given 
     # 
     # @param room_id 
     # @param account_id 
@@ -542,7 +534,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -595,7 +587,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -616,7 +608,7 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Gets the field set associated with the room.
+    # Gets the field set associated with the 
     # 
     # @param room_id 
     # @param account_id 
@@ -626,7 +618,7 @@ module DocuSign_Rooms
       return data
     end
 
-    # Gets the field set associated with the room.
+    # Gets the field set associated with the 
     # 
     # @param room_id 
     # @param account_id 
@@ -648,7 +640,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -669,7 +661,7 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Retrieves the list of users in the given room.
+    # Retrieves the list of users in the given 
     # 
     # @param room_id 
     # @param account_id 
@@ -680,7 +672,7 @@ module DocuSign_Rooms
       return data
     end
 
-    # Retrieves the list of users in the given room.
+    # Retrieves the list of users in the given 
     # 
     # @param room_id 
     # @param account_id 
@@ -710,7 +702,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -772,7 +764,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -797,10 +789,10 @@ module DocuSign_Rooms
     # 
     # @param room_id 
     # @param account_id 
-    # @param room_invite_request  
+    # @param body  (optional parameter)
     # @return [RoomInviteResponse]
-    def invite_user(room_id, account_id, room_invite_request)
-      data, _status_code, _headers = invite_user_with_http_info(room_id, account_id,  room_invite_request)
+    def invite_user(room_id, account_id, body)
+      data, _status_code, _headers = invite_user_with_http_info(room_id, account_id,  body)
       return data
     end
 
@@ -808,16 +800,14 @@ module DocuSign_Rooms
     # 
     # @param room_id 
     # @param account_id 
-    # @param room_invite_request  
+    # @param body  (optional parameter)
     # @return [Array<(RoomInviteResponse, Fixnum, Hash)>] RoomInviteResponse data, response status code and response headers
-    def invite_user_with_http_info(room_id, account_id, room_invite_request)
+    def invite_user_with_http_info(room_id, account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: RoomsApi.invite_user ..."
       end
       # verify the required parameter 'room_id' is set
       fail ArgumentError, "Missing the required parameter 'room_id' when calling RoomsApi.invite_user" if room_id.nil?
-      # verify the required parameter 'room_invite_request' is set
-      fail ArgumentError, "Missing the required parameter 'room_invite_request' when calling RoomsApi.invite_user" if room_invite_request.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling RoomsApi.invite_user" if account_id.nil?
       # resource path
@@ -829,15 +819,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(room_invite_request)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -857,10 +847,10 @@ module DocuSign_Rooms
     # @param room_id 
     # @param user_id 
     # @param account_id 
-    # @param room_user_for_update  
+    # @param body  (optional parameter)
     # @return [RoomUser]
-    def put_room_user(room_id, user_id, account_id, room_user_for_update)
-      data, _status_code, _headers = put_room_user_with_http_info(room_id, user_id, account_id,  room_user_for_update)
+    def put_room_user(room_id, user_id, account_id, body)
+      data, _status_code, _headers = put_room_user_with_http_info(room_id, user_id, account_id,  body)
       return data
     end
 
@@ -869,9 +859,9 @@ module DocuSign_Rooms
     # @param room_id 
     # @param user_id 
     # @param account_id 
-    # @param room_user_for_update  
+    # @param body  (optional parameter)
     # @return [Array<(RoomUser, Fixnum, Hash)>] RoomUser data, response status code and response headers
-    def put_room_user_with_http_info(room_id, user_id, account_id, room_user_for_update)
+    def put_room_user_with_http_info(room_id, user_id, account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: RoomsApi.put_room_user ..."
       end
@@ -879,8 +869,6 @@ module DocuSign_Rooms
       fail ArgumentError, "Missing the required parameter 'room_id' when calling RoomsApi.put_room_user" if room_id.nil?
       # verify the required parameter 'user_id' is set
       fail ArgumentError, "Missing the required parameter 'user_id' when calling RoomsApi.put_room_user" if user_id.nil?
-      # verify the required parameter 'room_user_for_update' is set
-      fail ArgumentError, "Missing the required parameter 'room_user_for_update' when calling RoomsApi.put_room_user" if room_user_for_update.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling RoomsApi.put_room_user" if account_id.nil?
       # resource path
@@ -892,15 +880,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(room_user_for_update)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
         :header_params => header_params,
@@ -915,7 +903,7 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Restores the specified user's access to the room.
+    # Restores the specified user's access to the 
     # 
     # @param room_id The room Id to restore access
     # @param user_id The user Id getting restored to the room
@@ -926,7 +914,7 @@ module DocuSign_Rooms
       return nil
     end
 
-    # Restores the specified user&#39;s access to the room.
+    # Restores the specified user&#39;s access to the 
     # 
     # @param room_id The room Id to restore access
     # @param user_id The user Id getting restored to the room
@@ -951,7 +939,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
 
       # form parameters
       form_params = {}
@@ -971,26 +959,26 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Revokes the specified user's access to the room.
+    # Revokes the specified user's access to the 
     # 
     # @param room_id The room Id to revoke access from
     # @param user_id The user Id getting revoked from the room
     # @param account_id 
-    # @param room_user_removal_detail Contains the date on which the users room access should be revoked (optional parameter)
+    # @param body  (optional parameter)
     # @return [nil]
-    def revoke_room_user_access(room_id, user_id, account_id, room_user_removal_detail)
-      revoke_room_user_access_with_http_info(room_id, user_id, account_id,  room_user_removal_detail)
+    def revoke_room_user_access(room_id, user_id, account_id, body)
+      revoke_room_user_access_with_http_info(room_id, user_id, account_id,  body)
       return nil
     end
 
-    # Revokes the specified user&#39;s access to the room.
+    # Revokes the specified user&#39;s access to the 
     # 
     # @param room_id The room Id to revoke access from
     # @param user_id The user Id getting revoked from the room
     # @param account_id 
-    # @param room_user_removal_detail Contains the date on which the users room access should be revoked (optional parameter)
+    # @param body  (optional parameter)
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def revoke_room_user_access_with_http_info(room_id, user_id, account_id, room_user_removal_detail)
+    def revoke_room_user_access_with_http_info(room_id, user_id, account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: RoomsApi.revoke_room_user_access ..."
       end
@@ -1009,15 +997,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(room_user_removal_detail)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -1031,7 +1019,7 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Update the picture for a room.
+    # Update the picture for a 
     # This endpoint supports the following content types, application/json as JSON PictureForUpdate{\"fileName\":\"string\", \"Base64Contents\":\"string\"}, multipart/formdata and any other streamed binary content type (as long as either query parameter fileName or request header ContentDisposition filename is included).
     # @param room_id ID of the room the picture is for.
     # @param account_id 
@@ -1041,7 +1029,7 @@ module DocuSign_Rooms
       return data
     end
 
-    # Update the picture for a room.
+    # Update the picture for a 
     # This endpoint supports the following content types, application/json as JSON PictureForUpdate{\&quot;fileName\&quot;:\&quot;string\&quot;, \&quot;Base64Contents\&quot;:\&quot;string\&quot;}, multipart/formdata and any other streamed binary content type (as long as either query parameter fileName or request header ContentDisposition filename is included).
     # @param room_id ID of the room the picture is for.
     # @param account_id 
@@ -1064,9 +1052,12 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['multipart/form-data'])
 
       # form parameters
       form_params = {}
+      form_params["file"] = options.file if !options.paramName.nil?
 
       # http body (model)
       post_body = nil
@@ -1088,10 +1079,10 @@ module DocuSign_Rooms
     # 
     # @param room_id 
     # @param account_id 
-    # @param field_data_for_update  
+    # @param body  (optional parameter)
     # @return [FieldData]
-    def update_room_field_data(room_id, account_id, field_data_for_update)
-      data, _status_code, _headers = update_room_field_data_with_http_info(room_id, account_id,  field_data_for_update)
+    def update_room_field_data(room_id, account_id, body)
+      data, _status_code, _headers = update_room_field_data_with_http_info(room_id, account_id,  body)
       return data
     end
 
@@ -1099,16 +1090,14 @@ module DocuSign_Rooms
     # 
     # @param room_id 
     # @param account_id 
-    # @param field_data_for_update  
+    # @param body  (optional parameter)
     # @return [Array<(FieldData, Fixnum, Hash)>] FieldData data, response status code and response headers
-    def update_room_field_data_with_http_info(room_id, account_id, field_data_for_update)
+    def update_room_field_data_with_http_info(room_id, account_id, body)
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: RoomsApi.update_room_field_data ..."
       end
       # verify the required parameter 'room_id' is set
       fail ArgumentError, "Missing the required parameter 'room_id' when calling RoomsApi.update_room_field_data" if room_id.nil?
-      # verify the required parameter 'field_data_for_update' is set
-      fail ArgumentError, "Missing the required parameter 'field_data_for_update' when calling RoomsApi.update_room_field_data" if field_data_for_update.nil?
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling RoomsApi.update_room_field_data" if account_id.nil?
       # resource path
@@ -1120,15 +1109,15 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(field_data_for_update)
+      post_body = @api_client.object_to_http_body(body)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
         :header_params => header_params,

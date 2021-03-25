@@ -29,6 +29,12 @@ module DocuSign_Rooms
 
     attr_accessor :docu_sign_form_id
 
+    attr_accessor :is_archived
+
+    attr_accessor :is_virtual
+
+    attr_accessor :owner
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -39,7 +45,10 @@ module DocuSign_Rooms
         :'folder_id' => :'folderId',
         :'created_date' => :'createdDate',
         :'is_signed' => :'isSigned',
-        :'docu_sign_form_id' => :'docuSignFormId'
+        :'docu_sign_form_id' => :'docuSignFormId',
+        :'is_archived' => :'isArchived',
+        :'is_virtual' => :'isVirtual',
+        :'owner' => :'owner'
       }
     end
 
@@ -53,7 +62,10 @@ module DocuSign_Rooms
         :'folder_id' => :'Integer',
         :'created_date' => :'DateTime',
         :'is_signed' => :'BOOLEAN',
-        :'docu_sign_form_id' => :'String'
+        :'docu_sign_form_id' => :'String',
+        :'is_archived' => :'BOOLEAN',
+        :'is_virtual' => :'BOOLEAN',
+        :'owner' => :'RoomDocumentOwner'
       }
     end
 
@@ -96,6 +108,18 @@ module DocuSign_Rooms
       if attributes.has_key?(:'docuSignFormId')
         self.docu_sign_form_id = attributes[:'docuSignFormId']
       end
+
+      if attributes.has_key?(:'isArchived')
+        self.is_archived = attributes[:'isArchived']
+      end
+
+      if attributes.has_key?(:'isVirtual')
+        self.is_virtual = attributes[:'isVirtual']
+      end
+
+      if attributes.has_key?(:'owner')
+        self.owner = attributes[:'owner']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -123,7 +147,10 @@ module DocuSign_Rooms
           folder_id == o.folder_id &&
           created_date == o.created_date &&
           is_signed == o.is_signed &&
-          docu_sign_form_id == o.docu_sign_form_id
+          docu_sign_form_id == o.docu_sign_form_id &&
+          is_archived == o.is_archived &&
+          is_virtual == o.is_virtual &&
+          owner == o.owner
     end
 
     # @see the `==` method
@@ -135,7 +162,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [document_id, name, owner_id, size, folder_id, created_date, is_signed, docu_sign_form_id].hash
+      [document_id, name, owner_id, size, folder_id, created_date, is_signed, docu_sign_form_id, is_archived, is_virtual, owner].hash
     end
 
     # Builds the object from hash
