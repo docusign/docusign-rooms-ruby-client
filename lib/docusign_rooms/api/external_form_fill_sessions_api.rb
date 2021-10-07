@@ -22,8 +22,8 @@ module DocuSign_Rooms
     end
 
     # Creates an external form fill session.
-    # 
-    # @param account_id 
+    # Returns a URL for a new external form fill session, based on the `roomId` and `formId` that you specify in the `formFillSessionForCreate` request body.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [ExternalFormFillSession]
     def create_external_form_fill_session(account_id, body)
@@ -32,8 +32,8 @@ module DocuSign_Rooms
     end
 
     # Creates an external form fill session.
-    # 
-    # @param account_id 
+    # Returns a URL for a new external form fill session, based on the &#x60;roomId&#x60; and &#x60;formId&#x60; that you specify in the &#x60;formFillSessionForCreate&#x60; request body.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(ExternalFormFillSession, Fixnum, Hash)>] ExternalFormFillSession data, response status code and response headers
     def create_external_form_fill_session_with_http_info(account_id, body)

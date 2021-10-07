@@ -22,8 +22,8 @@ module DocuSign_Rooms
     end
 
     # Gets permission profiles from the associated eSign account.
-    # 
-    # @param account_id 
+    # When you create or invite a new member in Rooms, the system creates an eSignature account for the member at the same time. This method returns a list of the eSignature permission profiles that the current user may be able to assign to a new member. The current user may not assign a permission higher than their own permission.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [ESignPermissionProfileList]
     def get_e_sign_permission_profiles(account_id)
       data, _status_code, _headers = get_e_sign_permission_profiles_with_http_info(account_id)
@@ -31,8 +31,8 @@ module DocuSign_Rooms
     end
 
     # Gets permission profiles from the associated eSign account.
-    # 
-    # @param account_id 
+    # When you create or invite a new member in Rooms, the system creates an eSignature account for the member at the same time. This method returns a list of the eSignature permission profiles that the current user may be able to assign to a new member. The current user may not assign a permission higher than their own permission.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(ESignPermissionProfileList, Fixnum, Hash)>] ESignPermissionProfileList data, response status code and response headers
     def get_e_sign_permission_profiles_with_http_info(account_id)
       if @api_client.config.debugging
@@ -50,6 +50,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

@@ -14,10 +14,10 @@ require "uri"
 module DocuSign_Rooms
 
   class GetTaskListTemplatesOptions
-    # 
+    # The starting zero-based index position from which to start returning values. The default is `0`.
     attr_accessor :start_position
 
-    # 
+    # The number of results to return. This value must be a number between `1` and `100` (default).
     attr_accessor :count
 
     def self.default
@@ -34,8 +34,8 @@ module DocuSign_Rooms
     end
 
     # Returns all task list templates for the company of the active user.
-    # 
-    # @param account_id 
+    # Returns all task list templates for the company of the active user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetTaskListTemplatesOptions Options for modifying the behavior of the function.
     # @return [TaskListTemplateList]
     def get_task_list_templates(account_id, options = DocuSign_Rooms::GetTaskListTemplatesOptions.default)
@@ -44,8 +44,8 @@ module DocuSign_Rooms
     end
 
     # Returns all task list templates for the company of the active user.
-    # 
-    # @param account_id 
+    # Returns all task list templates for the company of the active user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetTaskListTemplatesOptions Options for modifying the behavior of the function.
     # @return [Array<(TaskListTemplateList, Fixnum, Hash)>] TaskListTemplateList data, response status code and response headers
     def get_task_list_templates_with_http_info(account_id, options = DocuSign_Rooms::GetTaskListTemplatesOptions.default)
@@ -66,6 +66,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

@@ -22,8 +22,8 @@ module DocuSign_Rooms
     end
 
     # Get information about the account.
-    # 
-    # @param account_id 
+    # Returns details about a company account.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [AccountSummary]
     def get_account_information(account_id)
       data, _status_code, _headers = get_account_information_with_http_info(account_id)
@@ -31,8 +31,8 @@ module DocuSign_Rooms
     end
 
     # Get information about the account.
-    # 
-    # @param account_id 
+    # Returns details about a company account.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(AccountSummary, Fixnum, Hash)>] AccountSummary data, response status code and response headers
     def get_account_information_with_http_info(account_id)
       if @api_client.config.debugging
@@ -50,6 +50,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

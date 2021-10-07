@@ -46,8 +46,8 @@ module DocuSign_Rooms
     end
 
     # Gets a paged list of forms libraries.
-    # 
-    # @param account_id 
+    # Returns a list of form libraries to which the current user has access.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetFormLibrariesOptions Options for modifying the behavior of the function.
     # @return [FormLibrarySummaryList]
     def get_form_libraries(account_id, options = DocuSign_Rooms::GetFormLibrariesOptions.default)
@@ -56,8 +56,8 @@ module DocuSign_Rooms
     end
 
     # Gets a paged list of forms libraries.
-    # 
-    # @param account_id 
+    # Returns a list of form libraries to which the current user has access.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetFormLibrariesOptions Options for modifying the behavior of the function.
     # @return [Array<(FormLibrarySummaryList, Fixnum, Hash)>] FormLibrarySummaryList data, response status code and response headers
     def get_form_libraries_with_http_info(account_id, options = DocuSign_Rooms::GetFormLibrariesOptions.default)
@@ -78,6 +78,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -99,9 +101,9 @@ module DocuSign_Rooms
     end
 
     # Gets a paged list of forms in a forms library.
-    # 
+    # Returns a list of forms  to which the current user has access in the specified form library.
     # @param form_library_id Library Id
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetFormLibraryFormsOptions Options for modifying the behavior of the function.
     # @return [FormSummaryList]
     def get_form_library_forms(form_library_id, account_id, options = DocuSign_Rooms::GetFormLibraryFormsOptions.default)
@@ -110,9 +112,9 @@ module DocuSign_Rooms
     end
 
     # Gets a paged list of forms in a forms library.
-    # 
+    # Returns a list of forms  to which the current user has access in the specified form library.
     # @param form_library_id Library Id
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetFormLibraryFormsOptions Options for modifying the behavior of the function.
     # @return [Array<(FormSummaryList, Fixnum, Hash)>] FormSummaryList data, response status code and response headers
     def get_form_library_forms_with_http_info(form_library_id, account_id, options = DocuSign_Rooms::GetFormLibraryFormsOptions.default)
@@ -135,6 +137,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

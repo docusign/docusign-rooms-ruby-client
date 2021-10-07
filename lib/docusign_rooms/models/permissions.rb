@@ -29,8 +29,6 @@ module DocuSign_Rooms
 
     attr_accessor :can_export_room_activity_details_people
 
-    attr_accessor :is_visible_in_rooms
-
     attr_accessor :can_copy_room_details
 
     attr_accessor :can_edit_any_room_role
@@ -74,6 +72,8 @@ module DocuSign_Rooms
     attr_accessor :can_manage_form_groups
 
     attr_accessor :can_share_docs_not_owned
+
+    attr_accessor :can_create_form_templates
 
     attr_accessor :can_add_tasks_to_any_task_lists
 
@@ -146,7 +146,6 @@ module DocuSign_Rooms
         :'can_delete_owned_rooms' => :'canDeleteOwnedRooms',
         :'auto_access_to_rooms' => :'autoAccessToRooms',
         :'can_export_room_activity_details_people' => :'canExportRoomActivityDetailsPeople',
-        :'is_visible_in_rooms' => :'isVisibleInRooms',
         :'can_copy_room_details' => :'canCopyRoomDetails',
         :'can_edit_any_room_role' => :'canEditAnyRoomRole',
         :'can_edit_invited_room_role' => :'canEditInvitedRoomRole',
@@ -169,6 +168,7 @@ module DocuSign_Rooms
         :'can_manage_shared_docs' => :'canManageSharedDocs',
         :'can_manage_form_groups' => :'canManageFormGroups',
         :'can_share_docs_not_owned' => :'canShareDocsNotOwned',
+        :'can_create_form_templates' => :'canCreateFormTemplates',
         :'can_add_tasks_to_any_task_lists' => :'canAddTasksToAnyTaskLists',
         :'can_edit_editable_tasks' => :'canEditEditableTasks',
         :'can_edit_any_tasks' => :'canEditAnyTasks',
@@ -213,7 +213,6 @@ module DocuSign_Rooms
         :'can_delete_owned_rooms' => :'BOOLEAN',
         :'auto_access_to_rooms' => :'BOOLEAN',
         :'can_export_room_activity_details_people' => :'BOOLEAN',
-        :'is_visible_in_rooms' => :'BOOLEAN',
         :'can_copy_room_details' => :'BOOLEAN',
         :'can_edit_any_room_role' => :'BOOLEAN',
         :'can_edit_invited_room_role' => :'BOOLEAN',
@@ -236,6 +235,7 @@ module DocuSign_Rooms
         :'can_manage_shared_docs' => :'BOOLEAN',
         :'can_manage_form_groups' => :'BOOLEAN',
         :'can_share_docs_not_owned' => :'BOOLEAN',
+        :'can_create_form_templates' => :'BOOLEAN',
         :'can_add_tasks_to_any_task_lists' => :'BOOLEAN',
         :'can_edit_editable_tasks' => :'BOOLEAN',
         :'can_edit_any_tasks' => :'BOOLEAN',
@@ -307,10 +307,6 @@ module DocuSign_Rooms
 
       if attributes.has_key?(:'canExportRoomActivityDetailsPeople')
         self.can_export_room_activity_details_people = attributes[:'canExportRoomActivityDetailsPeople']
-      end
-
-      if attributes.has_key?(:'isVisibleInRooms')
-        self.is_visible_in_rooms = attributes[:'isVisibleInRooms']
       end
 
       if attributes.has_key?(:'canCopyRoomDetails')
@@ -399,6 +395,10 @@ module DocuSign_Rooms
 
       if attributes.has_key?(:'canShareDocsNotOwned')
         self.can_share_docs_not_owned = attributes[:'canShareDocsNotOwned']
+      end
+
+      if attributes.has_key?(:'canCreateFormTemplates')
+        self.can_create_form_templates = attributes[:'canCreateFormTemplates']
       end
 
       if attributes.has_key?(:'canAddTasksToAnyTaskLists')
@@ -548,7 +548,6 @@ module DocuSign_Rooms
           can_delete_owned_rooms == o.can_delete_owned_rooms &&
           auto_access_to_rooms == o.auto_access_to_rooms &&
           can_export_room_activity_details_people == o.can_export_room_activity_details_people &&
-          is_visible_in_rooms == o.is_visible_in_rooms &&
           can_copy_room_details == o.can_copy_room_details &&
           can_edit_any_room_role == o.can_edit_any_room_role &&
           can_edit_invited_room_role == o.can_edit_invited_room_role &&
@@ -571,6 +570,7 @@ module DocuSign_Rooms
           can_manage_shared_docs == o.can_manage_shared_docs &&
           can_manage_form_groups == o.can_manage_form_groups &&
           can_share_docs_not_owned == o.can_share_docs_not_owned &&
+          can_create_form_templates == o.can_create_form_templates &&
           can_add_tasks_to_any_task_lists == o.can_add_tasks_to_any_task_lists &&
           can_edit_editable_tasks == o.can_edit_editable_tasks &&
           can_edit_any_tasks == o.can_edit_any_tasks &&
@@ -612,7 +612,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [can_add_users_to_rooms, can_create_rooms, can_submit_rooms_for_review, can_close_rooms, can_reopen_rooms, can_delete_owned_rooms, auto_access_to_rooms, can_export_room_activity_details_people, is_visible_in_rooms, can_copy_room_details, can_edit_any_room_role, can_edit_invited_room_role, can_edit_room_side, can_manage_any_user_room_access, can_manage_invited_user_room_access, is_hidden_in_room, can_manage_room_owners, can_delete_rooms, can_connect_to_mortgage_cadence, can_view_room_details, can_view_and_edit_room_details, can_send_room_details_to_lone_wolf, can_add_documents, can_add_documents_from_form_groups, can_add_documents_from_form_libraries, documents_viewable_by_others_in_room_from_office, documents_auto_owned_by_peers, can_delete_owned_documents, can_manage_shared_docs, can_manage_form_groups, can_share_docs_not_owned, can_add_tasks_to_any_task_lists, can_edit_editable_tasks, can_edit_any_tasks, can_delete_deletable_tasks, can_delete_any_tasks, can_apply_task_list, can_remove_any_task_list, can_submit_task_list, can_auto_submit_task_list, can_review_task_list, can_auto_approve_task_list, can_manage_task_templates_for_all_regions_all_offices, can_apply_room_templates, can_add_tasks_to_rooms, can_review_any_task, can_manage_docs_on_any_task, can_add_member_and_set_role_lower_access_level, can_add_member_and_set_role_same_access_level, can_change_member_role_lower_access_level, can_change_member_role_same_access_level, can_manage_member_lower_access_level, can_manage_member_same_access_level, can_remove_company_member_lower_access_level, can_remove_company_member_same_access_level, can_manage_account, can_manage_logo, can_manage_roles_and_permissions, can_manage_room_details, can_manage_room_templates, can_manage_integration_settings].hash
+      [can_add_users_to_rooms, can_create_rooms, can_submit_rooms_for_review, can_close_rooms, can_reopen_rooms, can_delete_owned_rooms, auto_access_to_rooms, can_export_room_activity_details_people, can_copy_room_details, can_edit_any_room_role, can_edit_invited_room_role, can_edit_room_side, can_manage_any_user_room_access, can_manage_invited_user_room_access, is_hidden_in_room, can_manage_room_owners, can_delete_rooms, can_connect_to_mortgage_cadence, can_view_room_details, can_view_and_edit_room_details, can_send_room_details_to_lone_wolf, can_add_documents, can_add_documents_from_form_groups, can_add_documents_from_form_libraries, documents_viewable_by_others_in_room_from_office, documents_auto_owned_by_peers, can_delete_owned_documents, can_manage_shared_docs, can_manage_form_groups, can_share_docs_not_owned, can_create_form_templates, can_add_tasks_to_any_task_lists, can_edit_editable_tasks, can_edit_any_tasks, can_delete_deletable_tasks, can_delete_any_tasks, can_apply_task_list, can_remove_any_task_list, can_submit_task_list, can_auto_submit_task_list, can_review_task_list, can_auto_approve_task_list, can_manage_task_templates_for_all_regions_all_offices, can_apply_room_templates, can_add_tasks_to_rooms, can_review_any_task, can_manage_docs_on_any_task, can_add_member_and_set_role_lower_access_level, can_add_member_and_set_role_same_access_level, can_change_member_role_lower_access_level, can_change_member_role_same_access_level, can_manage_member_lower_access_level, can_manage_member_same_access_level, can_remove_company_member_lower_access_level, can_remove_company_member_same_access_level, can_manage_account, can_manage_logo, can_manage_roles_and_permissions, can_manage_room_details, can_manage_room_templates, can_manage_integration_settings].hash
     end
 
     # Builds the object from hash

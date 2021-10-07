@@ -14,7 +14,7 @@ require "uri"
 module DocuSign_Rooms
 
   class GetDocumentOptions
-    # 
+    # When set to **true**, includes the contents of the document in the `base64Contents` property of the response. The default value is **false**.
     attr_accessor :include_contents
 
     def self.default
@@ -31,9 +31,9 @@ module DocuSign_Rooms
     end
 
     # Grants access to a document for a user.
-    # 
-    # @param document_id 
-    # @param account_id 
+    # Grants a user access to a document. You specify the user's `userId` in the request body. The response is an object that specifies the access the user has.
+    # @param document_id The id of the document.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [DocumentUser]
     def create_document_user(document_id, account_id, body)
@@ -42,9 +42,9 @@ module DocuSign_Rooms
     end
 
     # Grants access to a document for a user.
-    # 
-    # @param document_id 
-    # @param account_id 
+    # Grants a user access to a document. You specify the user&#39;s &#x60;userId&#x60; in the request body. The response is an object that specifies the access the user has.
+    # @param document_id The id of the document.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(DocumentUser, Fixnum, Hash)>] DocumentUser data, response status code and response headers
     def create_document_user_with_http_info(document_id, account_id, body)
@@ -88,9 +88,9 @@ module DocuSign_Rooms
     end
 
     # Deletes a document.
-    # 
-    # @param document_id 
-    # @param account_id 
+    # Permanently deletes a document. To find the `documentId` of a document that you want to delete, use the Rooms::GetDocuments method.\\n\\nIf the document is deleted successfully, the HTTP response code is 204 (No Content), so the response body is empty.
+    # @param document_id The ID of the document.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def delete_document(document_id, account_id)
       delete_document_with_http_info(document_id, account_id)
@@ -98,9 +98,9 @@ module DocuSign_Rooms
     end
 
     # Deletes a document.
-    # 
-    # @param document_id 
-    # @param account_id 
+    # Permanently deletes a document. To find the &#x60;documentId&#x60; of a document that you want to delete, use the Rooms::GetDocuments method.\\n\\nIf the document is deleted successfully, the HTTP response code is 204 (No Content), so the response body is empty.
+    # @param document_id The ID of the document.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def delete_document_with_http_info(document_id, account_id)
       if @api_client.config.debugging
@@ -120,6 +120,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -140,9 +142,9 @@ module DocuSign_Rooms
     end
 
     # Get information about the Document with the given DocumentId.
-    # 
-    # @param document_id 
-    # @param account_id 
+    # Returns information about a document in a room. You can optionally request the contents of the document, which is returned in base64-encoded format.\\n\\nTo find the `documentId` of the document that you want to retrieve, use the Rooms::GetDocuments method.
+    # @param document_id The id of the document.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetDocumentOptions Options for modifying the behavior of the function.
     # @return [Document]
     def get_document(document_id, account_id, options = DocuSign_Rooms::GetDocumentOptions.default)
@@ -151,9 +153,9 @@ module DocuSign_Rooms
     end
 
     # Get information about the Document with the given DocumentId.
-    # 
-    # @param document_id 
-    # @param account_id 
+    # Returns information about a document in a room. You can optionally request the contents of the document, which is returned in base64-encoded format.\\n\\nTo find the &#x60;documentId&#x60; of the document that you want to retrieve, use the Rooms::GetDocuments method.
+    # @param document_id The id of the document.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetDocumentOptions Options for modifying the behavior of the function.
     # @return [Array<(Document, Fixnum, Hash)>] Document data, response status code and response headers
     def get_document_with_http_info(document_id, account_id, options = DocuSign_Rooms::GetDocumentOptions.default)
@@ -175,6 +177,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

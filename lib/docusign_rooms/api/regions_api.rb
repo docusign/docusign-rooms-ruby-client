@@ -37,8 +37,8 @@ module DocuSign_Rooms
     end
 
     # Creates a new region for a company
-    # 
-    # @param account_id 
+    # Creates a new region for a company
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Region]
     def create_region(account_id, body)
@@ -47,8 +47,8 @@ module DocuSign_Rooms
     end
 
     # Creates a new region for a company
-    # 
-    # @param account_id 
+    # Creates a new region for a company
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(Region, Fixnum, Hash)>] Region data, response status code and response headers
     def create_region_with_http_info(account_id, body)
@@ -90,9 +90,9 @@ module DocuSign_Rooms
     end
 
     # Delete a region.
-    # 
+    # Delete a region.
     # @param region_id Id of the desired region
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def delete_region(region_id, account_id)
       delete_region_with_http_info(region_id, account_id)
@@ -100,9 +100,9 @@ module DocuSign_Rooms
     end
 
     # Delete a region.
-    # 
+    # Delete a region.
     # @param region_id Id of the desired region
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def delete_region_with_http_info(region_id, account_id)
       if @api_client.config.debugging
@@ -122,6 +122,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -142,9 +144,9 @@ module DocuSign_Rooms
     end
 
     # Get information about the region with the given regionId
-    # 
+    # Get information about the region with the given regionId
     # @param region_id Id of the desired region
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Region]
     def get_region(region_id, account_id)
       data, _status_code, _headers = get_region_with_http_info(region_id, account_id)
@@ -152,9 +154,9 @@ module DocuSign_Rooms
     end
 
     # Get information about the region with the given regionId
-    # 
+    # Get information about the region with the given regionId
     # @param region_id Id of the desired region
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(Region, Fixnum, Hash)>] Region data, response status code and response headers
     def get_region_with_http_info(region_id, account_id)
       if @api_client.config.debugging
@@ -174,6 +176,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -195,9 +199,9 @@ module DocuSign_Rooms
     end
 
     # Get region reference counts.
-    # 
+    # This method returns a list of each type of object and the number of objects of that type referencing the specified region.
     # @param region_id Id of the desired region
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [RegionReferenceCountList]
     def get_region_reference_counts(region_id, account_id)
       data, _status_code, _headers = get_region_reference_counts_with_http_info(region_id, account_id)
@@ -205,9 +209,9 @@ module DocuSign_Rooms
     end
 
     # Get region reference counts.
-    # 
+    # This method returns a list of each type of object and the number of objects of that type referencing the specified region.
     # @param region_id Id of the desired region
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(RegionReferenceCountList, Fixnum, Hash)>] RegionReferenceCountList data, response status code and response headers
     def get_region_reference_counts_with_http_info(region_id, account_id)
       if @api_client.config.debugging
@@ -227,6 +231,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -247,9 +253,9 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Get account 
-    # 
-    # @param account_id 
+    # Get account regions.
+    # Returns a list of regions that are associated with a Rooms account.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRegionsOptions Options for modifying the behavior of the function.
     # @return [RegionSummaryList]
     def get_regions(account_id, options = DocuSign_Rooms::GetRegionsOptions.default)
@@ -257,9 +263,9 @@ module DocuSign_Rooms
       return data
     end
 
-    # Get account 
-    # 
-    # @param account_id 
+    # Get account regions.
+    # Returns a list of regions that are associated with a Rooms account.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRegionsOptions Options for modifying the behavior of the function.
     # @return [Array<(RegionSummaryList, Fixnum, Hash)>] RegionSummaryList data, response status code and response headers
     def get_regions_with_http_info(account_id, options = DocuSign_Rooms::GetRegionsOptions.default)
@@ -281,6 +287,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

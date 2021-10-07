@@ -33,6 +33,8 @@ module DocuSign_Rooms
 
     attr_accessor :base64_contents
 
+    attr_accessor :is_dynamic
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -45,7 +47,8 @@ module DocuSign_Rooms
         :'created_date' => :'createdDate',
         :'is_signed' => :'isSigned',
         :'content_type' => :'contentType',
-        :'base64_contents' => :'base64Contents'
+        :'base64_contents' => :'base64Contents',
+        :'is_dynamic' => :'isDynamic'
       }
     end
 
@@ -61,7 +64,8 @@ module DocuSign_Rooms
         :'created_date' => :'DateTime',
         :'is_signed' => :'BOOLEAN',
         :'content_type' => :'String',
-        :'base64_contents' => :'String'
+        :'base64_contents' => :'String',
+        :'is_dynamic' => :'BOOLEAN'
       }
     end
 
@@ -112,6 +116,10 @@ module DocuSign_Rooms
       if attributes.has_key?(:'base64Contents')
         self.base64_contents = attributes[:'base64Contents']
       end
+
+      if attributes.has_key?(:'isDynamic')
+        self.is_dynamic = attributes[:'isDynamic']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -151,7 +159,8 @@ module DocuSign_Rooms
           created_date == o.created_date &&
           is_signed == o.is_signed &&
           content_type == o.content_type &&
-          base64_contents == o.base64_contents
+          base64_contents == o.base64_contents &&
+          is_dynamic == o.is_dynamic
     end
 
     # @see the `==` method
@@ -163,7 +172,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [document_id, name, room_id, owner_id, size, folder_id, created_date, is_signed, content_type, base64_contents].hash
+      [document_id, name, room_id, owner_id, size, folder_id, created_date, is_signed, content_type, base64_contents, is_dynamic].hash
     end
 
     # Builds the object from hash
