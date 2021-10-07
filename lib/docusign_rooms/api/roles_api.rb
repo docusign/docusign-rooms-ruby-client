@@ -14,7 +14,7 @@ require "uri"
 module DocuSign_Rooms
 
   class GetRoleOptions
-    # 
+    # When set to true, the response includes the `isAssigned` property, which specifies whether the role is currently assigned to any users. The default is false.
     attr_accessor :include_is_assigned
 
     def self.default
@@ -23,16 +23,19 @@ module DocuSign_Rooms
   end
 
   class GetRolesOptions
-    # 
+    # Returns assignable roles based on calling user's company permissions.               DEPRECATED: Please use filterContext parameter to get the assignable roles. AssignableRolesBasedOnCompanyPermissions returns same results as onlyAssignable=true
     attr_accessor :only_assignable
 
-    # 
+    # Attribute establishing filter context for roles being returned - AllRoles, AssignableRolesBasedOnCompanyPermissions, AssignableRolesBasedOnAllPermissions
+    attr_accessor :filter_context
+
+    # A search filter that returns roles by the beginning of the role name. You can enter the beginning of the role name only to return all of the roles that begin with the text that you entered.
     attr_accessor :filter
 
-    # 
+    # The starting zero-based index position of the result set. The default value is 0.
     attr_accessor :start_position
 
-    # 
+    # The number of results to return. This value must be a number between `1` and `100` (default).
     attr_accessor :count
 
     def self.default
@@ -49,8 +52,8 @@ module DocuSign_Rooms
     end
 
     # Creates a role.
-    # 
-    # @param account_id 
+    # Creates a new company role in Rooms
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Role]
     def create_role(account_id, body)
@@ -59,8 +62,8 @@ module DocuSign_Rooms
     end
 
     # Creates a role.
-    # 
-    # @param account_id 
+    # Creates a new company role in Rooms
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(Role, Fixnum, Hash)>] Role data, response status code and response headers
     def create_role_with_http_info(account_id, body)
@@ -102,9 +105,9 @@ module DocuSign_Rooms
     end
 
     # Deletes the role with the given roleId.
-    # 
-    # @param role_id 
-    # @param account_id 
+    # Deletes a role from a company account in Rooms
+    # @param role_id The id of the role.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def delete_role(role_id, account_id)
       delete_role_with_http_info(role_id, account_id)
@@ -112,9 +115,9 @@ module DocuSign_Rooms
     end
 
     # Deletes the role with the given roleId.
-    # 
-    # @param role_id 
-    # @param account_id 
+    # Deletes a role from a company account in Rooms
+    # @param role_id The id of the role.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def delete_role_with_http_info(role_id, account_id)
       if @api_client.config.debugging
@@ -134,6 +137,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -154,9 +159,9 @@ module DocuSign_Rooms
     end
 
     # Get information about the role with the given roleId.
-    # 
-    # @param role_id 
-    # @param account_id 
+    # Get information about the role with the given roleId.
+    # @param role_id The id of the role.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRoleOptions Options for modifying the behavior of the function.
     # @return [Role]
     def get_role(role_id, account_id, options = DocuSign_Rooms::GetRoleOptions.default)
@@ -165,9 +170,9 @@ module DocuSign_Rooms
     end
 
     # Get information about the role with the given roleId.
-    # 
-    # @param role_id 
-    # @param account_id 
+    # Get information about the role with the given roleId.
+    # @param role_id The id of the role.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRoleOptions Options for modifying the behavior of the function.
     # @return [Array<(Role, Fixnum, Hash)>] Role data, response status code and response headers
     def get_role_with_http_info(role_id, account_id, options = DocuSign_Rooms::GetRoleOptions.default)
@@ -189,6 +194,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -210,8 +217,8 @@ module DocuSign_Rooms
     end
 
     # Gets a paged-list of roles in your company
-    # 
-    # @param account_id 
+    # Returns a list of roles associated with a company account
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRolesOptions Options for modifying the behavior of the function.
     # @return [RoleSummaryList]
     def get_roles(account_id, options = DocuSign_Rooms::GetRolesOptions.default)
@@ -220,8 +227,8 @@ module DocuSign_Rooms
     end
 
     # Gets a paged-list of roles in your company
-    # 
-    # @param account_id 
+    # Returns a list of roles associated with a company account
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRolesOptions Options for modifying the behavior of the function.
     # @return [Array<(RoleSummaryList, Fixnum, Hash)>] RoleSummaryList data, response status code and response headers
     def get_roles_with_http_info(account_id, options = DocuSign_Rooms::GetRolesOptions.default)
@@ -230,12 +237,16 @@ module DocuSign_Rooms
       end
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling RolesApi.get_roles" if account_id.nil?
+      if options.filter_context && !['AllRoles', 'AssignableRolesBasedOnCompanyPermissions', 'AssignableRolesBasedOnAllPermissions'].include?(options.filter_context)
+        fail ArgumentError, 'invalid value for "filter_context", must be one of AllRoles, AssignableRolesBasedOnCompanyPermissions, AssignableRolesBasedOnAllPermissions'
+      end
       # resource path
       local_var_path = "/v2/accounts/{accountId}/roles".sub('{format}','json').sub('{' + 'accountId' + '}', account_id.to_s)
 
       # query parameters
       query_params = {}
       query_params[:'onlyAssignable'] = options.only_assignable if !options.only_assignable.nil?
+      query_params[:'filterContext'] = options.filter_context if !options.filter_context.nil?
       query_params[:'filter'] = options.filter if !options.filter.nil?
       query_params[:'startPosition'] = options.start_position if !options.start_position.nil?
       query_params[:'count'] = options.count if !options.count.nil?
@@ -244,6 +255,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -265,9 +278,9 @@ module DocuSign_Rooms
     end
 
     # Updates the role with the given roleId.
-    # 
-    # @param role_id 
-    # @param account_id 
+    # Updates the role with the given roleId.
+    # @param role_id The id of the role.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Role]
     def update_role(role_id, account_id, body)
@@ -276,9 +289,9 @@ module DocuSign_Rooms
     end
 
     # Updates the role with the given roleId.
-    # 
-    # @param role_id 
-    # @param account_id 
+    # Updates the role with the given roleId.
+    # @param role_id The id of the role.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(Role, Fixnum, Hash)>] Role data, response status code and response headers
     def update_role_with_http_info(role_id, account_id, body)

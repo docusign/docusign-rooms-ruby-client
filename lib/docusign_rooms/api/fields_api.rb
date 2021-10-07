@@ -14,7 +14,7 @@ require "uri"
 module DocuSign_Rooms
 
   class GetFieldSetOptions
-    # 
+    # A comma-separated list that limits the fields to return:\\n\\n- `IsRequiredOnCreate`: include fields that are required in room creation.\\n- `IsRequiredOnSubmit`: include fields that are required when submitting a room for review.\\n
     attr_accessor :fields_custom_data_filters
 
     def self.default
@@ -31,9 +31,9 @@ module DocuSign_Rooms
     end
 
     # Get details of a specific field set.
-    # 
-    # @param field_set_id 
-    # @param account_id 
+    # Get details of a specific field set.
+    # @param field_set_id The id of the field set.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetFieldSetOptions Options for modifying the behavior of the function.
     # @return [FieldSet]
     def get_field_set(field_set_id, account_id, options = DocuSign_Rooms::GetFieldSetOptions.default)
@@ -42,9 +42,9 @@ module DocuSign_Rooms
     end
 
     # Get details of a specific field set.
-    # 
-    # @param field_set_id 
-    # @param account_id 
+    # Get details of a specific field set.
+    # @param field_set_id The id of the field set.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetFieldSetOptions Options for modifying the behavior of the function.
     # @return [Array<(FieldSet, Fixnum, Hash)>] FieldSet data, response status code and response headers
     def get_field_set_with_http_info(field_set_id, account_id, options = DocuSign_Rooms::GetFieldSetOptions.default)
@@ -69,6 +69,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

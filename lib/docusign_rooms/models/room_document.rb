@@ -33,6 +33,8 @@ module DocuSign_Rooms
 
     attr_accessor :is_virtual
 
+    attr_accessor :is_dynamic
+
     attr_accessor :owner
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -48,6 +50,7 @@ module DocuSign_Rooms
         :'docu_sign_form_id' => :'docuSignFormId',
         :'is_archived' => :'isArchived',
         :'is_virtual' => :'isVirtual',
+        :'is_dynamic' => :'isDynamic',
         :'owner' => :'owner'
       }
     end
@@ -65,6 +68,7 @@ module DocuSign_Rooms
         :'docu_sign_form_id' => :'String',
         :'is_archived' => :'BOOLEAN',
         :'is_virtual' => :'BOOLEAN',
+        :'is_dynamic' => :'BOOLEAN',
         :'owner' => :'RoomDocumentOwner'
       }
     end
@@ -117,6 +121,10 @@ module DocuSign_Rooms
         self.is_virtual = attributes[:'isVirtual']
       end
 
+      if attributes.has_key?(:'isDynamic')
+        self.is_dynamic = attributes[:'isDynamic']
+      end
+
       if attributes.has_key?(:'owner')
         self.owner = attributes[:'owner']
       end
@@ -150,6 +158,7 @@ module DocuSign_Rooms
           docu_sign_form_id == o.docu_sign_form_id &&
           is_archived == o.is_archived &&
           is_virtual == o.is_virtual &&
+          is_dynamic == o.is_dynamic &&
           owner == o.owner
     end
 
@@ -162,7 +171,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [document_id, name, owner_id, size, folder_id, created_date, is_signed, docu_sign_form_id, is_archived, is_virtual, owner].hash
+      [document_id, name, owner_id, size, folder_id, created_date, is_signed, docu_sign_form_id, is_archived, is_virtual, is_dynamic, owner].hash
     end
 
     # Builds the object from hash

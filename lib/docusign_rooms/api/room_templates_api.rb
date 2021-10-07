@@ -14,7 +14,7 @@ require "uri"
 module DocuSign_Rooms
 
   class GetRoomTemplatesOptions
-    # Get all room templates you have access to for this office. Response includes Company and Region level  If onlyAssignable is true, and no officeId is provided, user's default office is assumed.
+    # Get all room templates you have access to for this office. Response includes Company and Region level templates. If onlyAssignable is true, and no officeId is provided, user's default office is assumed.
     attr_accessor :office_id
 
     # Get list of templates you have access to. Default value false.
@@ -43,8 +43,8 @@ module DocuSign_Rooms
     end
 
     # Returns all room templates that the active user has access to
-    # 
-    # @param account_id 
+    # This method returns a list of room templates that the user can use to create a new room. The response includes company and region-level templates
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRoomTemplatesOptions Options for modifying the behavior of the function.
     # @return [RoomTemplatesSummaryList]
     def get_room_templates(account_id, options = DocuSign_Rooms::GetRoomTemplatesOptions.default)
@@ -53,8 +53,8 @@ module DocuSign_Rooms
     end
 
     # Returns all room templates that the active user has access to
-    # 
-    # @param account_id 
+    # This method returns a list of room templates that the user can use to create a new room. The response includes company and region-level templates
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRoomTemplatesOptions Options for modifying the behavior of the function.
     # @return [Array<(RoomTemplatesSummaryList, Fixnum, Hash)>] RoomTemplatesSummaryList data, response status code and response headers
     def get_room_templates_with_http_info(account_id, options = DocuSign_Rooms::GetRoomTemplatesOptions.default)
@@ -78,6 +78,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

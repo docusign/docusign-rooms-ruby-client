@@ -34,9 +34,9 @@ module DocuSign_Rooms
     end
 
     # Assigns a form to a form group.
-    # 
-    # @param form_group_id 
-    # @param account_id 
+    # Assigns the form specified in the `formId` property of the request to the form group `formGroupId`.
+    # @param form_group_id The ID of the form group.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [FormGroupFormToAssign]
     def assign_form_group_form(form_group_id, account_id, body)
@@ -45,9 +45,9 @@ module DocuSign_Rooms
     end
 
     # Assigns a form to a form group.
-    # 
-    # @param form_group_id 
-    # @param account_id 
+    # Assigns the form specified in the &#x60;formId&#x60; property of the request to the form group &#x60;formGroupId&#x60;.
+    # @param form_group_id The ID of the form group.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(FormGroupFormToAssign, Fixnum, Hash)>] FormGroupFormToAssign data, response status code and response headers
     def assign_form_group_form_with_http_info(form_group_id, account_id, body)
@@ -91,8 +91,8 @@ module DocuSign_Rooms
     end
 
     # Creates a form group.
-    # 
-    # @param account_id 
+    # Creates a new form group with the name given in the `name` property of the request body.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [FormGroup]
     def create_form_group(account_id, body)
@@ -101,8 +101,8 @@ module DocuSign_Rooms
     end
 
     # Creates a form group.
-    # 
-    # @param account_id 
+    # Creates a new form group with the name given in the &#x60;name&#x60; property of the request body.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(FormGroup, Fixnum, Hash)>] FormGroup data, response status code and response headers
     def create_form_group_with_http_info(account_id, body)
@@ -144,9 +144,9 @@ module DocuSign_Rooms
     end
 
     # Deletes a form group.
-    # 
-    # @param form_group_id 
-    # @param account_id 
+    # Deletes the specified form group.
+    # @param form_group_id The ID of the form group.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def delete_form_group(form_group_id, account_id)
       delete_form_group_with_http_info(form_group_id, account_id)
@@ -154,9 +154,9 @@ module DocuSign_Rooms
     end
 
     # Deletes a form group.
-    # 
-    # @param form_group_id 
-    # @param account_id 
+    # Deletes the specified form group.
+    # @param form_group_id The ID of the form group.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def delete_form_group_with_http_info(form_group_id, account_id)
       if @api_client.config.debugging
@@ -176,6 +176,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -196,9 +198,9 @@ module DocuSign_Rooms
     end
 
     # Gets a form group.
-    # 
-    # @param form_group_id 
-    # @param account_id 
+    # Get the specified form group.
+    # @param form_group_id The ID of the form group.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [FormGroup]
     def get_form_group(form_group_id, account_id)
       data, _status_code, _headers = get_form_group_with_http_info(form_group_id, account_id)
@@ -206,9 +208,9 @@ module DocuSign_Rooms
     end
 
     # Gets a form group.
-    # 
-    # @param form_group_id 
-    # @param account_id 
+    # Get the specified form group.
+    # @param form_group_id The ID of the form group.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(FormGroup, Fixnum, Hash)>] FormGroup data, response status code and response headers
     def get_form_group_with_http_info(form_group_id, account_id)
       if @api_client.config.debugging
@@ -228,6 +230,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -249,8 +253,8 @@ module DocuSign_Rooms
     end
 
     # Get account Form Groups.
-    # 
-    # @param account_id 
+    # Returns the company form groups to which the current user has access.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetFormGroupsOptions Options for modifying the behavior of the function.
     # @return [FormGroupSummaryList]
     def get_form_groups(account_id, options = DocuSign_Rooms::GetFormGroupsOptions.default)
@@ -259,8 +263,8 @@ module DocuSign_Rooms
     end
 
     # Get account Form Groups.
-    # 
-    # @param account_id 
+    # Returns the company form groups to which the current user has access.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetFormGroupsOptions Options for modifying the behavior of the function.
     # @return [Array<(FormGroupSummaryList, Fixnum, Hash)>] FormGroupSummaryList data, response status code and response headers
     def get_form_groups_with_http_info(account_id, options = DocuSign_Rooms::GetFormGroupsOptions.default)
@@ -281,6 +285,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -302,10 +308,10 @@ module DocuSign_Rooms
     end
 
     # Assign office to a form group so the specified office has access to the form group.
-    # 
-    # @param form_group_id 
-    # @param office_id 
-    # @param account_id 
+    # \"Grants the office `officeId` access to the form group `formGroupId`.
+    # @param form_group_id The ID of the form group.
+    # @param office_id The id of the office. This is the id that the system generated when you created the office.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def grant_office_access_to_form_group(form_group_id, office_id, account_id)
       grant_office_access_to_form_group_with_http_info(form_group_id, office_id, account_id)
@@ -313,10 +319,10 @@ module DocuSign_Rooms
     end
 
     # Assign office to a form group so the specified office has access to the form group.
-    # 
-    # @param form_group_id 
-    # @param office_id 
-    # @param account_id 
+    # \&quot;Grants the office &#x60;officeId&#x60; access to the form group &#x60;formGroupId&#x60;.
+    # @param form_group_id The ID of the form group.
+    # @param office_id The id of the office. This is the id that the system generated when you created the office.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def grant_office_access_to_form_group_with_http_info(form_group_id, office_id, account_id)
       if @api_client.config.debugging
@@ -338,6 +344,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -358,10 +366,10 @@ module DocuSign_Rooms
     end
 
     # Removes a form from a form group.
-    # 
-    # @param form_group_id 
-    # @param form_id 
-    # @param account_id 
+    # Removes the form `formId` from the form group `formGroupId`.
+    # @param form_group_id The ID of the form group.
+    # @param form_id The id of the form.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def remove_form_group_form(form_group_id, form_id, account_id)
       remove_form_group_form_with_http_info(form_group_id, form_id, account_id)
@@ -369,10 +377,10 @@ module DocuSign_Rooms
     end
 
     # Removes a form from a form group.
-    # 
-    # @param form_group_id 
-    # @param form_id 
-    # @param account_id 
+    # Removes the form &#x60;formId&#x60; from the form group &#x60;formGroupId&#x60;.
+    # @param form_group_id The ID of the form group.
+    # @param form_id The id of the form.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def remove_form_group_form_with_http_info(form_group_id, form_id, account_id)
       if @api_client.config.debugging
@@ -394,6 +402,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -414,9 +424,9 @@ module DocuSign_Rooms
     end
 
     # Renames a form group.
-    # 
-    # @param form_group_id 
-    # @param account_id 
+    # Renames the specified form group with the name given in the `name` property of the request.
+    # @param form_group_id The ID of the form group.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [FormGroup]
     def rename_form_group(form_group_id, account_id, body)
@@ -425,9 +435,9 @@ module DocuSign_Rooms
     end
 
     # Renames a form group.
-    # 
-    # @param form_group_id 
-    # @param account_id 
+    # Renames the specified form group with the name given in the &#x60;name&#x60; property of the request.
+    # @param form_group_id The ID of the form group.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(FormGroup, Fixnum, Hash)>] FormGroup data, response status code and response headers
     def rename_form_group_with_http_info(form_group_id, account_id, body)
@@ -471,10 +481,10 @@ module DocuSign_Rooms
     end
 
     # Remove office to a form group so the specified office doesn't have access to the form group.
-    # 
-    # @param form_group_id 
-    # @param office_id 
-    # @param account_id 
+    # Revoke access to the form group `formGroupId` from the office `officeId`.
+    # @param form_group_id The ID of the form group.
+    # @param office_id The id of the office. This is the id that the system generated when you created the office.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def revoke_office_access_from_form_group(form_group_id, office_id, account_id)
       revoke_office_access_from_form_group_with_http_info(form_group_id, office_id, account_id)
@@ -482,10 +492,10 @@ module DocuSign_Rooms
     end
 
     # Remove office to a form group so the specified office doesn&#39;t have access to the form group.
-    # 
-    # @param form_group_id 
-    # @param office_id 
-    # @param account_id 
+    # Revoke access to the form group &#x60;formGroupId&#x60; from the office &#x60;officeId&#x60;.
+    # @param form_group_id The ID of the form group.
+    # @param office_id The id of the office. This is the id that the system generated when you created the office.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def revoke_office_access_from_form_group_with_http_info(form_group_id, office_id, account_id)
       if @api_client.config.debugging
@@ -507,6 +517,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

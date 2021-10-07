@@ -22,9 +22,9 @@ module DocuSign_Rooms
     end
 
     # Gets form based on Id.
-    # 
+    # Returns details about a specific form, such as the date it was created and last updated, the number of pages, the form owner, and other information.
     # @param form_id Form ID
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [FormDetails]
     def get_form_details(form_id, account_id)
       data, _status_code, _headers = get_form_details_with_http_info(form_id, account_id)
@@ -32,9 +32,9 @@ module DocuSign_Rooms
     end
 
     # Gets form based on Id.
-    # 
+    # Returns details about a specific form, such as the date it was created and last updated, the number of pages, the form owner, and other information.
     # @param form_id Form ID
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(FormDetails, Fixnum, Hash)>] FormDetails data, response status code and response headers
     def get_form_details_with_http_info(form_id, account_id)
       if @api_client.config.debugging
@@ -54,6 +54,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

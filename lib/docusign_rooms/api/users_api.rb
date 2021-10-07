@@ -35,7 +35,7 @@ module DocuSign_Rooms
     # Valid values are 'Active', 'Pending'
     attr_accessor :status
 
-    # 
+    # When set to true, filters for users whose accounts are locked
     attr_accessor :locked_only
 
     # Defaults to 0
@@ -58,9 +58,9 @@ module DocuSign_Rooms
     end
 
     # Adds the user to the designated office.
-    # 
-    # @param user_id 
-    # @param account_id 
+    # Adds the user to the designated office.
+    # @param user_id The id of the user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [nil]
     def add_user_to_office(user_id, account_id, body)
@@ -69,9 +69,9 @@ module DocuSign_Rooms
     end
 
     # Adds the user to the designated office.
-    # 
-    # @param user_id 
-    # @param account_id 
+    # Adds the user to the designated office.
+    # @param user_id The id of the user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def add_user_to_office_with_http_info(user_id, account_id, body)
@@ -114,9 +114,9 @@ module DocuSign_Rooms
     end
 
     # Adds the user to the designated region.
-    # 
-    # @param user_id 
-    # @param account_id 
+    # Adds the user to the designated region.
+    # @param user_id The id of the user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [nil]
     def add_user_to_region(user_id, account_id, body)
@@ -125,9 +125,9 @@ module DocuSign_Rooms
     end
 
     # Adds the user to the designated region.
-    # 
-    # @param user_id 
-    # @param account_id 
+    # Adds the user to the designated region.
+    # @param user_id The id of the user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def add_user_to_region_with_http_info(user_id, account_id, body)
@@ -170,9 +170,9 @@ module DocuSign_Rooms
     end
 
     # Retrieves user information for the user having the given UserId.
-    # 
-    # @param user_id 
-    # @param account_id 
+    # Retrieves user information for the user having the given UserId.
+    # @param user_id The id of the user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [User]
     def get_user(user_id, account_id)
       data, _status_code, _headers = get_user_with_http_info(user_id, account_id)
@@ -180,9 +180,9 @@ module DocuSign_Rooms
     end
 
     # Retrieves user information for the user having the given UserId.
-    # 
-    # @param user_id 
-    # @param account_id 
+    # Retrieves user information for the user having the given UserId.
+    # @param user_id The id of the user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
     def get_user_with_http_info(user_id, account_id)
       if @api_client.config.debugging
@@ -202,6 +202,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -222,9 +224,9 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Gets a paged-list of 
+    # Gets a paged-list of users.
     # Retrieves a paged-list of Company Users in the User's company using the given filter and sort parameters.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetUsersOptions Options for modifying the behavior of the function.
     # @return [UserSummaryList]
     def get_users(account_id, options = DocuSign_Rooms::GetUsersOptions.default)
@@ -232,9 +234,9 @@ module DocuSign_Rooms
       return data
     end
 
-    # Gets a paged-list of 
+    # Gets a paged-list of users.
     # Retrieves a paged-list of Company Users in the User&#39;s company using the given filter and sort parameters.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetUsersOptions Options for modifying the behavior of the function.
     # @return [Array<(UserSummaryList, Fixnum, Hash)>] UserSummaryList data, response status code and response headers
     def get_users_with_http_info(account_id, options = DocuSign_Rooms::GetUsersOptions.default)
@@ -272,6 +274,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -293,8 +297,8 @@ module DocuSign_Rooms
     end
 
     # CLASSIC COMPANY ONLY. Send an invitation to join the company as an admin.
-    # 
-    # @param account_id 
+    # Invites a new user to join a company account on Rooms Version 5 as an Admin.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [User]
     def invite_classic_admin(account_id, body)
@@ -303,8 +307,8 @@ module DocuSign_Rooms
     end
 
     # CLASSIC COMPANY ONLY. Send an invitation to join the company as an admin.
-    # 
-    # @param account_id 
+    # Invites a new user to join a company account on Rooms Version 5 as an Admin.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
     def invite_classic_admin_with_http_info(account_id, body)
@@ -346,8 +350,8 @@ module DocuSign_Rooms
     end
 
     # CLASSIC COMPANY ONLY. Send an invitation to join the company as an agent.
-    # 
-    # @param account_id 
+    # Invites a new user to join a company account on Rooms Version 5 as an Agent.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [User]
     def invite_classic_agent(account_id, body)
@@ -356,8 +360,8 @@ module DocuSign_Rooms
     end
 
     # CLASSIC COMPANY ONLY. Send an invitation to join the company as an agent.
-    # 
-    # @param account_id 
+    # Invites a new user to join a company account on Rooms Version 5 as an Agent.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
     def invite_classic_agent_with_http_info(account_id, body)
@@ -399,8 +403,8 @@ module DocuSign_Rooms
     end
 
     # CLASSIC COMPANY ONLY. Send an invitation to join the company as a manager.
-    # 
-    # @param account_id 
+    # Invites a new user to join a company account on Rooms Version 5 as a Manager.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [User]
     def invite_classic_manager(account_id, body)
@@ -409,8 +413,8 @@ module DocuSign_Rooms
     end
 
     # CLASSIC COMPANY ONLY. Send an invitation to join the company as a manager.
-    # 
-    # @param account_id 
+    # Invites a new user to join a company account on Rooms Version 5 as a Manager.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
     def invite_classic_manager_with_http_info(account_id, body)
@@ -452,8 +456,8 @@ module DocuSign_Rooms
     end
 
     # NON-CLASSIC COMPANY ONLY. Send an invitation to the user or non-user having the given email.
-    # 
-    # @param account_id 
+    # Invites a new user to join a company account on Rooms Version 6.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [User]
     def invite_user(account_id, body)
@@ -462,8 +466,8 @@ module DocuSign_Rooms
     end
 
     # NON-CLASSIC COMPANY ONLY. Send an invitation to the user or non-user having the given email.
-    # 
-    # @param account_id 
+    # Invites a new user to join a company account on Rooms Version 6.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
     def invite_user_with_http_info(account_id, body)
@@ -505,9 +509,9 @@ module DocuSign_Rooms
     end
 
     # Locks the account of the user.
-    # 
+    # Locks the account of the user.
     # @param user_id User Id of the user attempting to be locked.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [nil]
     def lock_user(user_id, account_id, body)
@@ -516,9 +520,9 @@ module DocuSign_Rooms
     end
 
     # Locks the account of the user.
-    # 
+    # Locks the account of the user.
     # @param user_id User Id of the user attempting to be locked.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def lock_user_with_http_info(user_id, account_id, body)
@@ -561,9 +565,9 @@ module DocuSign_Rooms
     end
 
     # Reinvites the pending user with the given userId.
-    # 
+    # Reinvites an unactivated user to join a company account. You can use this method with either Rooms Version 5 or Rooms Version 6.
     # @param user_id 
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def reinvite_user(user_id, account_id)
       reinvite_user_with_http_info(user_id, account_id)
@@ -571,9 +575,9 @@ module DocuSign_Rooms
     end
 
     # Reinvites the pending user with the given userId.
-    # 
+    # Reinvites an unactivated user to join a company account. You can use this method with either Rooms Version 5 or Rooms Version 6.
     # @param user_id 
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def reinvite_user_with_http_info(user_id, account_id)
       if @api_client.config.debugging
@@ -593,6 +597,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -615,7 +621,7 @@ module DocuSign_Rooms
     # Removes a user from the company.
     # Removes the user. Will fail if the user owns any Rooms.   The rooms will need to be transferred to other agents before removing.
     # @param user_id Id of the user you wish to remove.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def remove_user(user_id, account_id)
       remove_user_with_http_info(user_id, account_id)
@@ -625,7 +631,7 @@ module DocuSign_Rooms
     # Removes a user from the company.
     # Removes the user. Will fail if the user owns any Rooms.   The rooms will need to be transferred to other agents before removing.
     # @param user_id Id of the user you wish to remove.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def remove_user_with_http_info(user_id, account_id)
       if @api_client.config.debugging
@@ -645,6 +651,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -665,9 +673,9 @@ module DocuSign_Rooms
     end
 
     # Removes the user from the designated office.
-    # 
-    # @param user_id 
-    # @param account_id 
+    # Removes the user from the designated office.
+    # @param user_id The id of the user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [nil]
     def remove_user_from_office(user_id, account_id, body)
@@ -676,9 +684,9 @@ module DocuSign_Rooms
     end
 
     # Removes the user from the designated office.
-    # 
-    # @param user_id 
-    # @param account_id 
+    # Removes the user from the designated office.
+    # @param user_id The id of the user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def remove_user_from_office_with_http_info(user_id, account_id, body)
@@ -721,9 +729,9 @@ module DocuSign_Rooms
     end
 
     # Removes the user from the designated region.
-    # 
-    # @param user_id 
-    # @param account_id 
+    # Removes the user from the designated region.
+    # @param user_id The id of the user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [nil]
     def remove_user_from_region(user_id, account_id, body)
@@ -732,9 +740,9 @@ module DocuSign_Rooms
     end
 
     # Removes the user from the designated region.
-    # 
-    # @param user_id 
-    # @param account_id 
+    # Removes the user from the designated region.
+    # @param user_id The id of the user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def remove_user_from_region_with_http_info(user_id, account_id, body)
@@ -777,9 +785,9 @@ module DocuSign_Rooms
     end
 
     # Unlocks the account of the user.
-    # 
+    # Unlocks the account of the user.
     # @param user_id User Id of the user attempting to be unlocked.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def unlock_user(user_id, account_id)
       unlock_user_with_http_info(user_id, account_id)
@@ -787,9 +795,9 @@ module DocuSign_Rooms
     end
 
     # Unlocks the account of the user.
-    # 
+    # Unlocks the account of the user.
     # @param user_id User Id of the user attempting to be unlocked.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def unlock_user_with_http_info(user_id, account_id)
       if @api_client.config.debugging
@@ -809,6 +817,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -829,9 +839,9 @@ module DocuSign_Rooms
     end
 
     # Updates user information
-    # 
-    # @param user_id 
-    # @param account_id 
+    # Updates user information
+    # @param user_id The id of the user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [User]
     def update_user(user_id, account_id, body)
@@ -840,9 +850,9 @@ module DocuSign_Rooms
     end
 
     # Updates user information
-    # 
-    # @param user_id 
-    # @param account_id 
+    # Updates user information
+    # @param user_id The id of the user.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
     def update_user_with_http_info(user_id, account_id, body)

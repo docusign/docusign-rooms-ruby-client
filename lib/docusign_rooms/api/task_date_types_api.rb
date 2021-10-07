@@ -22,7 +22,7 @@ module DocuSign_Rooms
     end
 
     # Retrieves the list of valid task date types.
-    # 
+    # Returns a list of date types that you can use with tasks, such as `Actual Close Date` and `Task Due Date`
     # @return [GlobalTaskDateTypes]
     def get_task_date_types()
       data, _status_code, _headers = get_task_date_types_with_http_info()
@@ -30,7 +30,7 @@ module DocuSign_Rooms
     end
 
     # Retrieves the list of valid task date types.
-    # 
+    # Returns a list of date types that you can use with tasks, such as &#x60;Actual Close Date&#x60; and &#x60;Task Due Date&#x60;
     # @return [Array<(GlobalTaskDateTypes, Fixnum, Hash)>] GlobalTaskDateTypes data, response status code and response headers
     def get_task_date_types_with_http_info()
       if @api_client.config.debugging
@@ -46,6 +46,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

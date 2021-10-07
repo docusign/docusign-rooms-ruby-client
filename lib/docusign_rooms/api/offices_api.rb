@@ -40,8 +40,8 @@ module DocuSign_Rooms
     end
 
     # Create an office.
-    # 
-    # @param account_id 
+    # Create an office.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Office]
     def create_office(account_id, body)
@@ -50,8 +50,8 @@ module DocuSign_Rooms
     end
 
     # Create an office.
-    # 
-    # @param account_id 
+    # Create an office.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(Office, Fixnum, Hash)>] Office data, response status code and response headers
     def create_office_with_http_info(account_id, body)
@@ -93,9 +93,9 @@ module DocuSign_Rooms
     end
 
     # Delete an office.
-    # 
+    # This method deletes an office from a Rooms account.
     # @param office_id 
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def delete_office(office_id, account_id)
       delete_office_with_http_info(office_id, account_id)
@@ -103,9 +103,9 @@ module DocuSign_Rooms
     end
 
     # Delete an office.
-    # 
+    # This method deletes an office from a Rooms account.
     # @param office_id 
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def delete_office_with_http_info(office_id, account_id)
       if @api_client.config.debugging
@@ -125,6 +125,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -145,9 +147,9 @@ module DocuSign_Rooms
     end
 
     # Get information about the office with the given officeId.
-    # 
-    # @param office_id 
-    # @param account_id 
+    # Get information about the office with the given officeId.
+    # @param office_id The id of the office.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Office]
     def get_office(office_id, account_id)
       data, _status_code, _headers = get_office_with_http_info(office_id, account_id)
@@ -155,9 +157,9 @@ module DocuSign_Rooms
     end
 
     # Get information about the office with the given officeId.
-    # 
-    # @param office_id 
-    # @param account_id 
+    # Get information about the office with the given officeId.
+    # @param office_id The id of the office.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(Office, Fixnum, Hash)>] Office data, response status code and response headers
     def get_office_with_http_info(office_id, account_id)
       if @api_client.config.debugging
@@ -177,6 +179,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -197,9 +201,9 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Get all 
-    # 
-    # @param account_id 
+    # Get all offices.
+    # This method returns a list of offices associated with an account.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetOfficesOptions Options for modifying the behavior of the function.
     # @return [OfficeSummaryList]
     def get_offices(account_id, options = DocuSign_Rooms::GetOfficesOptions.default)
@@ -207,9 +211,9 @@ module DocuSign_Rooms
       return data
     end
 
-    # Get all 
-    # 
-    # @param account_id 
+    # Get all offices.
+    # This method returns a list of offices associated with an account.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetOfficesOptions Options for modifying the behavior of the function.
     # @return [Array<(OfficeSummaryList, Fixnum, Hash)>] OfficeSummaryList data, response status code and response headers
     def get_offices_with_http_info(account_id, options = DocuSign_Rooms::GetOfficesOptions.default)
@@ -232,6 +236,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -253,9 +259,9 @@ module DocuSign_Rooms
     end
 
     # Lists the number of objects of each type that reference the office.
-    # 
+    # This method returns a list of each type of object and the number of objects of that type referencing the specified office. Note that an office cannot be deleted while existing objects reference it.
     # @param office_id 
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [OfficeReferenceCountList]
     def get_reference_counts(office_id, account_id)
       data, _status_code, _headers = get_reference_counts_with_http_info(office_id, account_id)
@@ -263,9 +269,9 @@ module DocuSign_Rooms
     end
 
     # Lists the number of objects of each type that reference the office.
-    # 
+    # This method returns a list of each type of object and the number of objects of that type referencing the specified office. Note that an office cannot be deleted while existing objects reference it.
     # @param office_id 
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(OfficeReferenceCountList, Fixnum, Hash)>] OfficeReferenceCountList data, response status code and response headers
     def get_reference_counts_with_http_info(office_id, account_id)
       if @api_client.config.debugging
@@ -285,6 +291,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

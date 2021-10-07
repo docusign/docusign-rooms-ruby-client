@@ -22,7 +22,7 @@ module DocuSign_Rooms
     end
 
     # Retrieves the list of valid special circumstance types.
-    # 
+    # Returns a list of special circumstance types
     # @return [GlobalSpecialCircumstanceTypes]
     def get_special_circumstance_types()
       data, _status_code, _headers = get_special_circumstance_types_with_http_info()
@@ -30,7 +30,7 @@ module DocuSign_Rooms
     end
 
     # Retrieves the list of valid special circumstance types.
-    # 
+    # Returns a list of special circumstance types
     # @return [Array<(GlobalSpecialCircumstanceTypes, Fixnum, Hash)>] GlobalSpecialCircumstanceTypes data, response status code and response headers
     def get_special_circumstance_types_with_http_info()
       if @api_client.config.debugging
@@ -46,6 +46,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}

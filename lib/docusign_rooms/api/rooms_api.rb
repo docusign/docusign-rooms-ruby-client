@@ -17,13 +17,13 @@ module DocuSign_Rooms
     # Optional parameter indicating to only return roles (internal/external) assignable to this user.
     attr_accessor :assignee_email
 
-    # 
+    # A search filter that returns assignable roles by the beginning of the role name.
     attr_accessor :filter
 
-    # 
+    # The index position within the total result set from which to start returning values. The default value is `0`.
     attr_accessor :start_position
 
-    # 
+    # The number of results to return. This value must be a number between `1` and `100` (default).
     attr_accessor :count
 
     def self.default
@@ -37,6 +37,18 @@ module DocuSign_Rooms
 
     # Position of the first item in the total results. Defaults to 0.
     attr_accessor :start_position
+
+    # Filter out any isDynamic documents without content. Defaults to false.
+    attr_accessor :require_content_for_dynamic_documents
+
+    # Filter documents by folderId. Defaults to null, to not filter on folderId.
+    attr_accessor :room_folder_id
+
+    # Filter documents where Name contains the filter. Defaults to null, to not filter.
+    attr_accessor :name_filter
+
+    # Filter documents to have the same isArchived value as includeArchived. Defaults to true, to include archived documents.
+    attr_accessor :include_archived
 
     def self.default
       @@default ||= GetDocumentsOptions.new
@@ -108,10 +120,10 @@ module DocuSign_Rooms
       @api_client = api_client
     end
 
-    # Add a document to a 
-    # 
-    # @param room_id 
-    # @param account_id 
+    # Add a document to a room.
+    # Add a document to a room
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [RoomDocument]
     def add_document_to_room(room_id, account_id, body)
@@ -119,10 +131,10 @@ module DocuSign_Rooms
       return data
     end
 
-    # Add a document to a 
-    # 
-    # @param room_id 
-    # @param account_id 
+    # Add a document to a room.
+    # Add a document to a room
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(RoomDocument, Fixnum, Hash)>] RoomDocument data, response status code and response headers
     def add_document_to_room_with_http_info(room_id, account_id, body)
@@ -166,9 +178,9 @@ module DocuSign_Rooms
     end
 
     # Add a document to a room via file contents upload.
-    # 
-    # @param room_id 
-    # @param account_id 
+    # This method uploads the contents of file as a room document for the room that you specify.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [RoomDocument]
     def add_document_to_room_via_file_upload(room_id, account_id)
       data, _status_code, _headers = add_document_to_room_via_file_upload_with_http_info(room_id, account_id)
@@ -176,9 +188,9 @@ module DocuSign_Rooms
     end
 
     # Add a document to a room via file contents upload.
-    # 
-    # @param room_id 
-    # @param account_id 
+    # This method uploads the contents of file as a room document for the room that you specify.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(RoomDocument, Fixnum, Hash)>] RoomDocument data, response status code and response headers
     def add_document_to_room_via_file_upload_with_http_info(room_id, account_id)
       if @api_client.config.debugging
@@ -203,7 +215,7 @@ module DocuSign_Rooms
 
       # form parameters
       form_params = {}
-      form_params["file"] = options.file if !options.paramName.nil?
+      form_params["file"] = options.file if !options.file.nil?
 
       # http body (model)
       post_body = nil
@@ -222,9 +234,9 @@ module DocuSign_Rooms
     end
 
     # Adds a DocuSign Form to a room
-    # 
+    # Adds a form to a room.
     # @param room_id Id of the room to which the DocuSign Form is being added
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [RoomDocument]
     def add_form_to_room(room_id, account_id, body)
@@ -233,9 +245,9 @@ module DocuSign_Rooms
     end
 
     # Adds a DocuSign Form to a room
-    # 
+    # Adds a form to a room.
     # @param room_id Id of the room to which the DocuSign Form is being added
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(RoomDocument, Fixnum, Hash)>] RoomDocument data, response status code and response headers
     def add_form_to_room_with_http_info(room_id, account_id, body)
@@ -279,8 +291,8 @@ module DocuSign_Rooms
     end
 
     # Creates a new Room
-    # 
-    # @param account_id 
+    # Creates a new Room
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Room]
     def create_room(account_id, body)
@@ -289,8 +301,8 @@ module DocuSign_Rooms
     end
 
     # Creates a new Room
-    # 
-    # @param account_id 
+    # Creates a new Room
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(Room, Fixnum, Hash)>] Room data, response status code and response headers
     def create_room_with_http_info(account_id, body)
@@ -332,9 +344,9 @@ module DocuSign_Rooms
     end
 
     # Deletes the room having the given room ID.
-    # 
+    # Deletes the room having the given room ID.
     # @param room_id ID of the room to be deleted.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def delete_room(room_id, account_id)
       delete_room_with_http_info(room_id, account_id)
@@ -342,9 +354,9 @@ module DocuSign_Rooms
     end
 
     # Deletes the room having the given room ID.
-    # 
+    # Deletes the room having the given room ID.
     # @param room_id ID of the room to be deleted.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def delete_room_with_http_info(room_id, account_id)
       if @api_client.config.debugging
@@ -364,6 +376,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -384,9 +398,9 @@ module DocuSign_Rooms
     end
 
     # Returns the roles for which the calling user, based on their role within the room, can assign to invitees.
-    # 
-    # @param room_id 
-    # @param account_id 
+    # This method returns the room-level roles that the current user can assign to the members that they invite to a room.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetAssignableRolesOptions Options for modifying the behavior of the function.
     # @return [AssignableRoles]
     def get_assignable_roles(room_id, account_id, options = DocuSign_Rooms::GetAssignableRolesOptions.default)
@@ -395,9 +409,9 @@ module DocuSign_Rooms
     end
 
     # Returns the roles for which the calling user, based on their role within the room, can assign to invitees.
-    # 
-    # @param room_id 
-    # @param account_id 
+    # This method returns the room-level roles that the current user can assign to the members that they invite to a room.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetAssignableRolesOptions Options for modifying the behavior of the function.
     # @return [Array<(AssignableRoles, Fixnum, Hash)>] AssignableRoles data, response status code and response headers
     def get_assignable_roles_with_http_info(room_id, account_id, options = DocuSign_Rooms::GetAssignableRolesOptions.default)
@@ -422,6 +436,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -443,9 +459,9 @@ module DocuSign_Rooms
     end
 
     # Get documents in the room accessible to the calling user.
-    # 
-    # @param room_id 
-    # @param account_id 
+    # This method returns a list of documents that the current user can access for a specific room.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetDocumentsOptions Options for modifying the behavior of the function.
     # @return [RoomDocumentList]
     def get_documents(room_id, account_id, options = DocuSign_Rooms::GetDocumentsOptions.default)
@@ -454,9 +470,9 @@ module DocuSign_Rooms
     end
 
     # Get documents in the room accessible to the calling user.
-    # 
-    # @param room_id 
-    # @param account_id 
+    # This method returns a list of documents that the current user can access for a specific room.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetDocumentsOptions Options for modifying the behavior of the function.
     # @return [Array<(RoomDocumentList, Fixnum, Hash)>] RoomDocumentList data, response status code and response headers
     def get_documents_with_http_info(room_id, account_id, options = DocuSign_Rooms::GetDocumentsOptions.default)
@@ -474,11 +490,17 @@ module DocuSign_Rooms
       query_params = {}
       query_params[:'count'] = options.count if !options.count.nil?
       query_params[:'startPosition'] = options.start_position if !options.start_position.nil?
+      query_params[:'requireContentForDynamicDocuments'] = options.require_content_for_dynamic_documents if !options.require_content_for_dynamic_documents.nil?
+      query_params[:'roomFolderId'] = options.room_folder_id if !options.room_folder_id.nil?
+      query_params[:'nameFilter'] = options.name_filter if !options.name_filter.nil?
+      query_params[:'includeArchived'] = options.include_archived if !options.include_archived.nil?
 
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -499,10 +521,10 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Gets information about the given 
-    # 
-    # @param room_id 
-    # @param account_id 
+    # Gets information about the given room.
+    # Returns details about the given room
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRoomOptions Options for modifying the behavior of the function.
     # @return [Room]
     def get_room(room_id, account_id, options = DocuSign_Rooms::GetRoomOptions.default)
@@ -510,10 +532,10 @@ module DocuSign_Rooms
       return data
     end
 
-    # Gets information about the given 
-    # 
-    # @param room_id 
-    # @param account_id 
+    # Gets information about the given room.
+    # Returns details about the given room
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRoomOptions Options for modifying the behavior of the function.
     # @return [Array<(Room, Fixnum, Hash)>] Room data, response status code and response headers
     def get_room_with_http_info(room_id, account_id, options = DocuSign_Rooms::GetRoomOptions.default)
@@ -535,6 +557,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -556,9 +580,9 @@ module DocuSign_Rooms
     end
 
     # Returns the FieldData associated with the provided roomId.
-    # 
-    # @param room_id 
-    # @param account_id 
+    # Returns the field data associated with a room. This is the information that appears on the room's **Details** tab.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [FieldData]
     def get_room_field_data(room_id, account_id)
       data, _status_code, _headers = get_room_field_data_with_http_info(room_id, account_id)
@@ -566,9 +590,9 @@ module DocuSign_Rooms
     end
 
     # Returns the FieldData associated with the provided roomId.
-    # 
-    # @param room_id 
-    # @param account_id 
+    # Returns the field data associated with a room. This is the information that appears on the room&#39;s **Details** tab.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(FieldData, Fixnum, Hash)>] FieldData data, response status code and response headers
     def get_room_field_data_with_http_info(room_id, account_id)
       if @api_client.config.debugging
@@ -588,6 +612,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -608,20 +634,20 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Gets the field set associated with the 
-    # 
-    # @param room_id 
-    # @param account_id 
+    # Gets the field set associated with the room.
+    # Returns the field set that a room uses.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [FieldSet]
     def get_room_field_set(room_id, account_id)
       data, _status_code, _headers = get_room_field_set_with_http_info(room_id, account_id)
       return data
     end
 
-    # Gets the field set associated with the 
-    # 
-    # @param room_id 
-    # @param account_id 
+    # Gets the field set associated with the room.
+    # Returns the field set that a room uses.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(FieldSet, Fixnum, Hash)>] FieldSet data, response status code and response headers
     def get_room_field_set_with_http_info(room_id, account_id)
       if @api_client.config.debugging
@@ -641,6 +667,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -661,10 +689,10 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Retrieves the list of users in the given 
-    # 
-    # @param room_id 
-    # @param account_id 
+    # Retrieves the list of users in the given room.
+    # This method returns a list of users associated with a room.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRoomUsersOptions Options for modifying the behavior of the function.
     # @return [RoomUsersResult]
     def get_room_users(room_id, account_id, options = DocuSign_Rooms::GetRoomUsersOptions.default)
@@ -672,10 +700,10 @@ module DocuSign_Rooms
       return data
     end
 
-    # Retrieves the list of users in the given 
-    # 
-    # @param room_id 
-    # @param account_id 
+    # Retrieves the list of users in the given room.
+    # This method returns a list of users associated with a room.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRoomUsersOptions Options for modifying the behavior of the function.
     # @return [Array<(RoomUsersResult, Fixnum, Hash)>] RoomUsersResult data, response status code and response headers
     def get_room_users_with_http_info(room_id, account_id, options = DocuSign_Rooms::GetRoomUsersOptions.default)
@@ -703,6 +731,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -724,8 +754,8 @@ module DocuSign_Rooms
     end
 
     # Gets rooms available to the calling user.
-    # 
-    # @param account_id 
+    # Gets rooms available to the calling user
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRoomsOptions Options for modifying the behavior of the function.
     # @return [RoomSummaryList]
     def get_rooms(account_id, options = DocuSign_Rooms::GetRoomsOptions.default)
@@ -734,8 +764,8 @@ module DocuSign_Rooms
     end
 
     # Gets rooms available to the calling user.
-    # 
-    # @param account_id 
+    # Gets rooms available to the calling user
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRoomsOptions Options for modifying the behavior of the function.
     # @return [Array<(RoomSummaryList, Fixnum, Hash)>] RoomSummaryList data, response status code and response headers
     def get_rooms_with_http_info(account_id, options = DocuSign_Rooms::GetRoomsOptions.default)
@@ -765,6 +795,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -786,9 +818,9 @@ module DocuSign_Rooms
     end
 
     # Invites a user to the room by email address.
-    # 
-    # @param room_id 
-    # @param account_id 
+    # This method invites an existing or new member to a specific room.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [RoomInviteResponse]
     def invite_user(room_id, account_id, body)
@@ -797,9 +829,9 @@ module DocuSign_Rooms
     end
 
     # Invites a user to the room by email address.
-    # 
-    # @param room_id 
-    # @param account_id 
+    # This method invites an existing or new member to a specific room.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(RoomInviteResponse, Fixnum, Hash)>] RoomInviteResponse data, response status code and response headers
     def invite_user_with_http_info(room_id, account_id, body)
@@ -843,10 +875,10 @@ module DocuSign_Rooms
     end
 
     # Updates the specified user's role and transaction side.
-    # 
-    # @param room_id 
-    # @param user_id 
-    # @param account_id 
+    # Updates the specified user's role and transaction side.
+    # @param room_id The id of the room.
+    # @param user_id The id of the user to update.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [RoomUser]
     def put_room_user(room_id, user_id, account_id, body)
@@ -855,10 +887,10 @@ module DocuSign_Rooms
     end
 
     # Updates the specified user&#39;s role and transaction side.
-    # 
-    # @param room_id 
-    # @param user_id 
-    # @param account_id 
+    # Updates the specified user&#39;s role and transaction side.
+    # @param room_id The id of the room.
+    # @param user_id The id of the user to update.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(RoomUser, Fixnum, Hash)>] RoomUser data, response status code and response headers
     def put_room_user_with_http_info(room_id, user_id, account_id, body)
@@ -903,22 +935,22 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Restores the specified user's access to the 
-    # 
+    # Restores the specified user's access to the room.
+    # Restores the specified user's access to the room.
     # @param room_id The room Id to restore access
     # @param user_id The user Id getting restored to the room
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def restore_room_user_access(room_id, user_id, account_id)
       restore_room_user_access_with_http_info(room_id, user_id, account_id)
       return nil
     end
 
-    # Restores the specified user&#39;s access to the 
-    # 
+    # Restores the specified user&#39;s access to the room.
+    # Restores the specified user&#39;s access to the room.
     # @param room_id The room Id to restore access
     # @param user_id The user Id getting restored to the room
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def restore_room_user_access_with_http_info(room_id, user_id, account_id)
       if @api_client.config.debugging
@@ -940,6 +972,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
@@ -959,11 +993,11 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Revokes the specified user's access to the 
-    # 
+    # Revokes the specified user's access to the room.
+    # Revokes the specified user's access to the room.
     # @param room_id The room Id to revoke access from
     # @param user_id The user Id getting revoked from the room
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [nil]
     def revoke_room_user_access(room_id, user_id, account_id, body)
@@ -971,11 +1005,11 @@ module DocuSign_Rooms
       return nil
     end
 
-    # Revokes the specified user&#39;s access to the 
-    # 
+    # Revokes the specified user&#39;s access to the room.
+    # Revokes the specified user&#39;s access to the room.
     # @param room_id The room Id to revoke access from
     # @param user_id The user Id getting revoked from the room
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def revoke_room_user_access_with_http_info(room_id, user_id, account_id, body)
@@ -1019,20 +1053,20 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # Update the picture for a 
+    # Update the picture for a room.
     # This endpoint supports the following content types, application/json as JSON PictureForUpdate{\"fileName\":\"string\", \"Base64Contents\":\"string\"}, multipart/formdata and any other streamed binary content type (as long as either query parameter fileName or request header ContentDisposition filename is included).
     # @param room_id ID of the room the picture is for.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [RoomPicture]
     def update_picture(room_id, account_id)
       data, _status_code, _headers = update_picture_with_http_info(room_id, account_id)
       return data
     end
 
-    # Update the picture for a 
+    # Update the picture for a room.
     # This endpoint supports the following content types, application/json as JSON PictureForUpdate{\&quot;fileName\&quot;:\&quot;string\&quot;, \&quot;Base64Contents\&quot;:\&quot;string\&quot;}, multipart/formdata and any other streamed binary content type (as long as either query parameter fileName or request header ContentDisposition filename is included).
     # @param room_id ID of the room the picture is for.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(RoomPicture, Fixnum, Hash)>] RoomPicture data, response status code and response headers
     def update_picture_with_http_info(room_id, account_id)
       if @api_client.config.debugging
@@ -1057,7 +1091,7 @@ module DocuSign_Rooms
 
       # form parameters
       form_params = {}
-      form_params["file"] = options.file if !options.paramName.nil?
+      form_params["file"] = options.file if !options.file.nil?
 
       # http body (model)
       post_body = nil
@@ -1076,9 +1110,9 @@ module DocuSign_Rooms
     end
 
     # Updates room field data.
-    # 
-    # @param room_id 
-    # @param account_id 
+    # Updates room field data.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [FieldData]
     def update_room_field_data(room_id, account_id, body)
@@ -1087,9 +1121,9 @@ module DocuSign_Rooms
     end
 
     # Updates room field data.
-    # 
-    # @param room_id 
-    # @param account_id 
+    # Updates room field data.
+    # @param room_id The id of the room.
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param body  (optional parameter)
     # @return [Array<(FieldData, Fixnum, Hash)>] FieldData data, response status code and response headers
     def update_room_field_data_with_http_info(room_id, account_id, body)

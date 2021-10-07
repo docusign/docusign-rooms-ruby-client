@@ -34,9 +34,9 @@ module DocuSign_Rooms
     end
 
     # Gets room folders accessible to the calling user.
-    # 
+    # Gets a list of room folders in the specified room that are accessible to the current user.
     # @param room_id The room id from which to retrieve folders.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRoomFoldersOptions Options for modifying the behavior of the function.
     # @return [RoomFolderList]
     def get_room_folders(room_id, account_id, options = DocuSign_Rooms::GetRoomFoldersOptions.default)
@@ -45,9 +45,9 @@ module DocuSign_Rooms
     end
 
     # Gets room folders accessible to the calling user.
-    # 
+    # Gets a list of room folders in the specified room that are accessible to the current user.
     # @param room_id The room id from which to retrieve folders.
-    # @param account_id 
+    # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @param DocuSign_Rooms::GetRoomFoldersOptions Options for modifying the behavior of the function.
     # @return [Array<(RoomFolderList, Fixnum, Hash)>] RoomFolderList data, response status code and response headers
     def get_room_folders_with_http_info(room_id, account_id, options = DocuSign_Rooms::GetRoomFoldersOptions.default)
@@ -70,6 +70,8 @@ module DocuSign_Rooms
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
