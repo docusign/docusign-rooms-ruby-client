@@ -1,7 +1,7 @@
 =begin
-#DocuSign REST API
+#DocuSign Rooms API - v2
 
-#The DocuSign REST API provides you with a powerful, convenient, and simple Web services API for interacting with DocuSign.
+#An API for an integrator to access the features of DocuSign Rooms
 
 OpenAPI spec version: v2
 Contact: devcenter@docusign.com

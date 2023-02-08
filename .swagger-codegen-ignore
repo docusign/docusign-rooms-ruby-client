@@ -36,7 +36,6 @@ LICENSE
 Gemfile
 Gemfile.lock
 Rakefile
-docusign_rooms.gemspec
 
 
 # Specific src and test files
@@ -44,6 +43,3 @@ docusign_rooms.gemspec
 docs/
 spec/
 tests/
-lib/docusign_rooms/client/
-lib/docusign_rooms/api_error.rb
-lib/docusign_rooms/api_client.rb

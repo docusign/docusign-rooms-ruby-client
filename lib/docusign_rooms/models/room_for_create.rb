@@ -28,6 +28,30 @@ module DocuSign_Rooms
 
     attr_accessor :field_data
 
+    attr_accessor :listing_source
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -37,7 +61,8 @@ module DocuSign_Rooms
         :'owner_id' => :'ownerId',
         :'template_id' => :'templateId',
         :'office_id' => :'officeId',
-        :'field_data' => :'fieldData'
+        :'field_data' => :'fieldData',
+        :'listing_source' => :'listingSource'
       }
     end
 
@@ -50,7 +75,8 @@ module DocuSign_Rooms
         :'owner_id' => :'Integer',
         :'template_id' => :'Integer',
         :'office_id' => :'Integer',
-        :'field_data' => :'FieldDataForCreate'
+        :'field_data' => :'FieldDataForCreate',
+        :'listing_source' => :'String'
       }
     end
 
@@ -89,6 +115,10 @@ module DocuSign_Rooms
       if attributes.has_key?(:'fieldData')
         self.field_data = attributes[:'fieldData']
       end
+
+      if attributes.has_key?(:'listingSource')
+        self.listing_source = attributes[:'listingSource']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -111,7 +141,19 @@ module DocuSign_Rooms
     def valid?
       return false if @name.nil?
       return false if @role_id.nil?
+      listing_source_validator = EnumAttributeValidator.new('String', ['PublicRecords', 'MLS'])
+      return false unless listing_source_validator.valid?(@listing_source)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] listing_source Object to be assigned
+    def listing_source=(listing_source)
+      validator = EnumAttributeValidator.new('String', ['PublicRecords', 'MLS'])
+      unless validator.valid?(listing_source)
+        fail ArgumentError, 'invalid value for "listing_source", must be one of #{validator.allowable_values}.'
+      end
+      @listing_source = listing_source
     end
 
     # Checks equality by comparing each attribute.
@@ -125,7 +167,8 @@ module DocuSign_Rooms
           owner_id == o.owner_id &&
           template_id == o.template_id &&
           office_id == o.office_id &&
-          field_data == o.field_data
+          field_data == o.field_data &&
+          listing_source == o.listing_source
     end
 
     # @see the `==` method
@@ -137,7 +180,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, role_id, transaction_side_id, owner_id, template_id, office_id, field_data].hash
+      [name, role_id, transaction_side_id, owner_id, template_id, office_id, field_data, listing_source].hash
     end
 
     # Builds the object from hash

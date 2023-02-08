@@ -41,6 +41,28 @@ module DocuSign_Rooms
 
     attr_accessor :permissions
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -70,7 +92,7 @@ module DocuSign_Rooms
         :'last_name' => :'String',
         :'is_locked_out' => :'BOOLEAN',
         :'status' => :'String',
-        :'access_level' => :'AccessLevel',
+        :'access_level' => :'String',
         :'default_office_id' => :'Integer',
         :'title_id' => :'Integer',
         :'role_id' => :'Integer',
@@ -160,7 +182,19 @@ module DocuSign_Rooms
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      access_level_validator = EnumAttributeValidator.new('String', ['Contributor', 'Office', 'Region', 'Company', 'Admin'])
+      return false unless access_level_validator.valid?(@access_level)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] access_level Object to be assigned
+    def access_level=(access_level)
+      validator = EnumAttributeValidator.new('String', ['Contributor', 'Office', 'Region', 'Company', 'Admin'])
+      unless validator.valid?(access_level)
+        fail ArgumentError, 'invalid value for "access_level", must be one of #{validator.allowable_values}.'
+      end
+      @access_level = access_level
     end
 
     # Checks equality by comparing each attribute.
