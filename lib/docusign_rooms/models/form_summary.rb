@@ -19,12 +19,15 @@ module DocuSign_Rooms
 
     attr_accessor :last_updated_date
 
+    attr_accessor :viewing_user_has_access
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'library_form_id' => :'libraryFormId',
         :'name' => :'name',
-        :'last_updated_date' => :'lastUpdatedDate'
+        :'last_updated_date' => :'lastUpdatedDate',
+        :'viewing_user_has_access' => :'viewingUserHasAccess'
       }
     end
 
@@ -33,7 +36,8 @@ module DocuSign_Rooms
       {
         :'library_form_id' => :'String',
         :'name' => :'String',
-        :'last_updated_date' => :'DateTime'
+        :'last_updated_date' => :'DateTime',
+        :'viewing_user_has_access' => :'BOOLEAN'
       }
     end
 
@@ -55,6 +59,10 @@ module DocuSign_Rooms
 
       if attributes.has_key?(:'lastUpdatedDate')
         self.last_updated_date = attributes[:'lastUpdatedDate']
+      end
+
+      if attributes.has_key?(:'viewingUserHasAccess')
+        self.viewing_user_has_access = attributes[:'viewingUserHasAccess']
       end
     end
 
@@ -78,7 +86,8 @@ module DocuSign_Rooms
       self.class == o.class &&
           library_form_id == o.library_form_id &&
           name == o.name &&
-          last_updated_date == o.last_updated_date
+          last_updated_date == o.last_updated_date &&
+          viewing_user_has_access == o.viewing_user_has_access
     end
 
     # @see the `==` method
@@ -90,7 +99,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [library_form_id, name, last_updated_date].hash
+      [library_form_id, name, last_updated_date, viewing_user_has_access].hash
     end
 
     # Builds the object from hash

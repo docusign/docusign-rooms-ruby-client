@@ -17,6 +17,8 @@ module DocuSign_Rooms
 
     attr_accessor :room_id
 
+    attr_accessor :form_ids
+
     attr_accessor :x_frame_allowed_url
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -24,6 +26,7 @@ module DocuSign_Rooms
       {
         :'form_id' => :'formId',
         :'room_id' => :'roomId',
+        :'form_ids' => :'formIds',
         :'x_frame_allowed_url' => :'xFrameAllowedUrl'
       }
     end
@@ -33,6 +36,7 @@ module DocuSign_Rooms
       {
         :'form_id' => :'String',
         :'room_id' => :'Integer',
+        :'form_ids' => :'Array<String>',
         :'x_frame_allowed_url' => :'String'
       }
     end
@@ -53,6 +57,12 @@ module DocuSign_Rooms
         self.room_id = attributes[:'roomId']
       end
 
+      if attributes.has_key?(:'formIds')
+        if (value = attributes[:'formIds']).is_a?(Array)
+          self.form_ids = value
+        end
+      end
+
       if attributes.has_key?(:'xFrameAllowedUrl')
         self.x_frame_allowed_url = attributes[:'xFrameAllowedUrl']
       end
@@ -62,10 +72,6 @@ module DocuSign_Rooms
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @form_id.nil?
-        invalid_properties.push('invalid value for "form_id", form_id cannot be nil.')
-      end
-
       if @room_id.nil?
         invalid_properties.push('invalid value for "room_id", room_id cannot be nil.')
       end
@@ -76,7 +82,6 @@ module DocuSign_Rooms
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @form_id.nil?
       return false if @room_id.nil?
       true
     end
@@ -88,6 +93,7 @@ module DocuSign_Rooms
       self.class == o.class &&
           form_id == o.form_id &&
           room_id == o.room_id &&
+          form_ids == o.form_ids &&
           x_frame_allowed_url == o.x_frame_allowed_url
     end
 
@@ -100,7 +106,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [form_id, room_id, x_frame_allowed_url].hash
+      [form_id, room_id, form_ids, x_frame_allowed_url].hash
     end
 
     # Builds the object from hash

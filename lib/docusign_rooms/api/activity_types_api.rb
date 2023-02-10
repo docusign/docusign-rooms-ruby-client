@@ -22,7 +22,7 @@ module DocuSign_Rooms
     end
 
     # Retrieves the list of valid activity types.
-    # Retrieves the list of valid activity types.
+    # Returns the list of valid activity types.
     # @return [GlobalActivityTypes]
     def get_activity_types()
       data, _status_code, _headers = get_activity_types_with_http_info()
@@ -30,7 +30,7 @@ module DocuSign_Rooms
     end
 
     # Retrieves the list of valid activity types.
-    # Retrieves the list of valid activity types.
+    # Returns the list of valid activity types.
     # @return [Array<(GlobalActivityTypes, Fixnum, Hash)>] GlobalActivityTypes data, response status code and response headers
     def get_activity_types_with_http_info()
       if @api_client.config.debugging
@@ -45,7 +45,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 

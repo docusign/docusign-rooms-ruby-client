@@ -17,11 +17,14 @@ module DocuSign_Rooms
 
     attr_accessor :message
 
+    attr_accessor :reference_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'error_code' => :'errorCode',
-        :'message' => :'message'
+        :'message' => :'message',
+        :'reference_id' => :'referenceId'
       }
     end
 
@@ -29,7 +32,8 @@ module DocuSign_Rooms
     def self.swagger_types
       {
         :'error_code' => :'String',
-        :'message' => :'String'
+        :'message' => :'String',
+        :'reference_id' => :'String'
       }
     end
 
@@ -47,6 +51,10 @@ module DocuSign_Rooms
 
       if attributes.has_key?(:'message')
         self.message = attributes[:'message']
+      end
+
+      if attributes.has_key?(:'referenceId')
+        self.reference_id = attributes[:'referenceId']
       end
     end
 
@@ -69,7 +77,8 @@ module DocuSign_Rooms
       return true if self.equal?(o)
       self.class == o.class &&
           error_code == o.error_code &&
-          message == o.message
+          message == o.message &&
+          reference_id == o.reference_id
     end
 
     # @see the `==` method
@@ -81,7 +90,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [error_code, message].hash
+      [error_code, message, reference_id].hash
     end
 
     # Builds the object from hash

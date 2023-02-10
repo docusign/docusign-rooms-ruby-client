@@ -34,7 +34,7 @@ module DocuSign_Rooms
     # Grants a user access to a document. You specify the user's `userId` in the request body. The response is an object that specifies the access the user has.
     # @param document_id The id of the document.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Request body with user id that the document has to be granted to (optional parameter)
     # @return [DocumentUser]
     def create_document_user(document_id, account_id, body)
       data, _status_code, _headers = create_document_user_with_http_info(document_id, account_id,  body)
@@ -45,7 +45,7 @@ module DocuSign_Rooms
     # Grants a user access to a document. You specify the user&#39;s &#x60;userId&#x60; in the request body. The response is an object that specifies the access the user has.
     # @param document_id The id of the document.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Request body with user id that the document has to be granted to (optional parameter)
     # @return [Array<(DocumentUser, Fixnum, Hash)>] DocumentUser data, response status code and response headers
     def create_document_user_with_http_info(document_id, account_id, body)
       if @api_client.config.debugging
@@ -64,9 +64,9 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json', 'application/xml', 'text/xml', 'application/*+xml'])
 
       # form parameters
       form_params = {}
@@ -119,7 +119,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -176,7 +176,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 

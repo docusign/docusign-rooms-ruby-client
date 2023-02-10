@@ -31,9 +31,13 @@ module DocuSign_Rooms
 
     attr_accessor :created_by_user_id
 
+    attr_accessor :room_owner_ids
+
     attr_accessor :rejected_by_user_id
 
     attr_accessor :closed_status_id
+
+    attr_accessor :field_data_last_updated_date
 
     attr_accessor :field_data
 
@@ -49,8 +53,10 @@ module DocuSign_Rooms
         :'closed_date' => :'closedDate',
         :'rejected_date' => :'rejectedDate',
         :'created_by_user_id' => :'createdByUserId',
+        :'room_owner_ids' => :'roomOwnerIds',
         :'rejected_by_user_id' => :'rejectedByUserId',
         :'closed_status_id' => :'closedStatusId',
+        :'field_data_last_updated_date' => :'fieldDataLastUpdatedDate',
         :'field_data' => :'fieldData'
       }
     end
@@ -67,8 +73,10 @@ module DocuSign_Rooms
         :'closed_date' => :'DateTime',
         :'rejected_date' => :'DateTime',
         :'created_by_user_id' => :'Integer',
+        :'room_owner_ids' => :'Array<Integer>',
         :'rejected_by_user_id' => :'Integer',
         :'closed_status_id' => :'String',
+        :'field_data_last_updated_date' => :'DateTime',
         :'field_data' => :'FieldData'
       }
     end
@@ -117,12 +125,22 @@ module DocuSign_Rooms
         self.created_by_user_id = attributes[:'createdByUserId']
       end
 
+      if attributes.has_key?(:'roomOwnerIds')
+        if (value = attributes[:'roomOwnerIds']).is_a?(Array)
+          self.room_owner_ids = value
+        end
+      end
+
       if attributes.has_key?(:'rejectedByUserId')
         self.rejected_by_user_id = attributes[:'rejectedByUserId']
       end
 
       if attributes.has_key?(:'closedStatusId')
         self.closed_status_id = attributes[:'closedStatusId']
+      end
+
+      if attributes.has_key?(:'fieldDataLastUpdatedDate')
+        self.field_data_last_updated_date = attributes[:'fieldDataLastUpdatedDate']
       end
 
       if attributes.has_key?(:'fieldData')
@@ -157,8 +175,10 @@ module DocuSign_Rooms
           closed_date == o.closed_date &&
           rejected_date == o.rejected_date &&
           created_by_user_id == o.created_by_user_id &&
+          room_owner_ids == o.room_owner_ids &&
           rejected_by_user_id == o.rejected_by_user_id &&
           closed_status_id == o.closed_status_id &&
+          field_data_last_updated_date == o.field_data_last_updated_date &&
           field_data == o.field_data
     end
 
@@ -171,7 +191,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [room_id, company_id, name, office_id, created_date, submitted_for_review_date, closed_date, rejected_date, created_by_user_id, rejected_by_user_id, closed_status_id, field_data].hash
+      [room_id, company_id, name, office_id, created_date, submitted_for_review_date, closed_date, rejected_date, created_by_user_id, room_owner_ids, rejected_by_user_id, closed_status_id, field_data_last_updated_date, field_data].hash
     end
 
     # Builds the object from hash

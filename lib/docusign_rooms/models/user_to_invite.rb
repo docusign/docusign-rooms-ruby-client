@@ -29,9 +29,33 @@ module DocuSign_Rooms
 
     attr_accessor :offices
 
+    attr_accessor :subscribe_to_rooms_activity_notifications
+
     attr_accessor :e_sign_permission_profile_id
 
     attr_accessor :redirect_url
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -44,6 +68,7 @@ module DocuSign_Rooms
         :'default_office_id' => :'defaultOfficeId',
         :'regions' => :'regions',
         :'offices' => :'offices',
+        :'subscribe_to_rooms_activity_notifications' => :'subscribeToRoomsActivityNotifications',
         :'e_sign_permission_profile_id' => :'eSignPermissionProfileId',
         :'redirect_url' => :'redirectUrl'
       }
@@ -56,10 +81,11 @@ module DocuSign_Rooms
         :'last_name' => :'String',
         :'email' => :'String',
         :'role_id' => :'Integer',
-        :'access_level' => :'AccessLevel',
+        :'access_level' => :'String',
         :'default_office_id' => :'Integer',
         :'regions' => :'Array<Integer>',
         :'offices' => :'Array<Integer>',
+        :'subscribe_to_rooms_activity_notifications' => :'BOOLEAN',
         :'e_sign_permission_profile_id' => :'String',
         :'redirect_url' => :'String'
       }
@@ -107,6 +133,12 @@ module DocuSign_Rooms
         if (value = attributes[:'offices']).is_a?(Array)
           self.offices = value
         end
+      end
+
+      if attributes.has_key?(:'subscribeToRoomsActivityNotifications')
+        self.subscribe_to_rooms_activity_notifications = attributes[:'subscribeToRoomsActivityNotifications']
+      else
+        self.subscribe_to_rooms_activity_notifications = true
       end
 
       if attributes.has_key?(:'eSignPermissionProfileId')
@@ -161,9 +193,21 @@ module DocuSign_Rooms
       return false if @email.nil?
       return false if @role_id.nil?
       return false if @access_level.nil?
+      access_level_validator = EnumAttributeValidator.new('String', ['Contributor', 'Office', 'Region', 'Company', 'Admin'])
+      return false unless access_level_validator.valid?(@access_level)
       return false if @default_office_id.nil?
       return false if @e_sign_permission_profile_id.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] access_level Object to be assigned
+    def access_level=(access_level)
+      validator = EnumAttributeValidator.new('String', ['Contributor', 'Office', 'Region', 'Company', 'Admin'])
+      unless validator.valid?(access_level)
+        fail ArgumentError, 'invalid value for "access_level", must be one of #{validator.allowable_values}.'
+      end
+      @access_level = access_level
     end
 
     # Checks equality by comparing each attribute.
@@ -179,6 +223,7 @@ module DocuSign_Rooms
           default_office_id == o.default_office_id &&
           regions == o.regions &&
           offices == o.offices &&
+          subscribe_to_rooms_activity_notifications == o.subscribe_to_rooms_activity_notifications &&
           e_sign_permission_profile_id == o.e_sign_permission_profile_id &&
           redirect_url == o.redirect_url
     end
@@ -192,7 +237,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, last_name, email, role_id, access_level, default_office_id, regions, offices, e_sign_permission_profile_id, redirect_url].hash
+      [first_name, last_name, email, role_id, access_level, default_office_id, regions, offices, subscribe_to_rooms_activity_notifications, e_sign_permission_profile_id, redirect_url].hash
     end
 
     # Builds the object from hash

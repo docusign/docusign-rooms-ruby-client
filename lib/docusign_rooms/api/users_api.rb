@@ -20,7 +20,7 @@ module DocuSign_Rooms
     # Valid values are 'FirstNameAsc', 'FirstNameDesc', 'LastNameAsc', 'LastNameDesc', 'EmailAsc', 'EmailDesc'
     attr_accessor :sort
 
-    # 
+    # Default office ID
     attr_accessor :default_office_id
 
     # Valid values are 'Company', 'Region', 'Office', 'Contributor'
@@ -61,7 +61,7 @@ module DocuSign_Rooms
     # Adds the user to the designated office.
     # @param user_id The id of the user.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Details of the office that the user will be added to (optional parameter)
     # @return [nil]
     def add_user_to_office(user_id, account_id, body)
       add_user_to_office_with_http_info(user_id, account_id,  body)
@@ -72,7 +72,7 @@ module DocuSign_Rooms
     # Adds the user to the designated office.
     # @param user_id The id of the user.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Details of the office that the user will be added to (optional parameter)
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def add_user_to_office_with_http_info(user_id, account_id, body)
       if @api_client.config.debugging
@@ -91,9 +91,9 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json', 'application/xml', 'text/xml', 'application/*+xml'])
 
       # form parameters
       form_params = {}
@@ -117,7 +117,7 @@ module DocuSign_Rooms
     # Adds the user to the designated region.
     # @param user_id The id of the user.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Region that given user will be added to (optional parameter)
     # @return [nil]
     def add_user_to_region(user_id, account_id, body)
       add_user_to_region_with_http_info(user_id, account_id,  body)
@@ -128,7 +128,7 @@ module DocuSign_Rooms
     # Adds the user to the designated region.
     # @param user_id The id of the user.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Region that given user will be added to (optional parameter)
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def add_user_to_region_with_http_info(user_id, account_id, body)
       if @api_client.config.debugging
@@ -147,9 +147,9 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json', 'application/xml', 'text/xml', 'application/*+xml'])
 
       # form parameters
       form_params = {}
@@ -201,7 +201,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -245,15 +245,6 @@ module DocuSign_Rooms
       end
       # verify the required parameter 'account_id' is set
       fail ArgumentError, "Missing the required parameter 'account_id' when calling UsersApi.get_users" if account_id.nil?
-      if options.sort && !['FirstNameAsc', 'LastNameAsc', 'EmailAsc', 'FirstNameDesc', 'LastNameDesc', 'EmailDesc'].include?(options.sort)
-        fail ArgumentError, 'invalid value for "sort", must be one of FirstNameAsc, LastNameAsc, EmailAsc, FirstNameDesc, LastNameDesc, EmailDesc'
-      end
-      if options.access_level && !['Contributor', 'Office', 'Region', 'Company', 'Admin'].include?(options.access_level)
-        fail ArgumentError, 'invalid value for "access_level", must be one of Contributor, Office, Region, Company, Admin'
-      end
-      if options.status && !['Active', 'Pending'].include?(options.status)
-        fail ArgumentError, 'invalid value for "status", must be one of Active, Pending'
-      end
       # resource path
       local_var_path = "/v2/accounts/{accountId}/users".sub('{format}','json').sub('{' + 'accountId' + '}', account_id.to_s)
 
@@ -273,7 +264,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -296,169 +287,10 @@ module DocuSign_Rooms
       return data, status_code, headers
     end
 
-    # CLASSIC COMPANY ONLY. Send an invitation to join the company as an admin.
-    # Invites a new user to join a company account on Rooms Version 5 as an Admin.
-    # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
-    # @return [User]
-    def invite_classic_admin(account_id, body)
-      data, _status_code, _headers = invite_classic_admin_with_http_info(account_id,  body)
-      return data
-    end
-
-    # CLASSIC COMPANY ONLY. Send an invitation to join the company as an admin.
-    # Invites a new user to join a company account on Rooms Version 5 as an Admin.
-    # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
-    # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
-    def invite_classic_admin_with_http_info(account_id, body)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: UsersApi.invite_classic_admin ..."
-      end
-      # verify the required parameter 'account_id' is set
-      fail ArgumentError, "Missing the required parameter 'account_id' when calling UsersApi.invite_classic_admin" if account_id.nil?
-      # resource path
-      local_var_path = "/v2/accounts/{accountId}/users/invite_classic_admin".sub('{format}','json').sub('{' + 'accountId' + '}', account_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(body)
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'User')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UsersApi#invite_classic_admin\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # CLASSIC COMPANY ONLY. Send an invitation to join the company as an agent.
-    # Invites a new user to join a company account on Rooms Version 5 as an Agent.
-    # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
-    # @return [User]
-    def invite_classic_agent(account_id, body)
-      data, _status_code, _headers = invite_classic_agent_with_http_info(account_id,  body)
-      return data
-    end
-
-    # CLASSIC COMPANY ONLY. Send an invitation to join the company as an agent.
-    # Invites a new user to join a company account on Rooms Version 5 as an Agent.
-    # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
-    # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
-    def invite_classic_agent_with_http_info(account_id, body)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: UsersApi.invite_classic_agent ..."
-      end
-      # verify the required parameter 'account_id' is set
-      fail ArgumentError, "Missing the required parameter 'account_id' when calling UsersApi.invite_classic_agent" if account_id.nil?
-      # resource path
-      local_var_path = "/v2/accounts/{accountId}/users/invite_classic_agent".sub('{format}','json').sub('{' + 'accountId' + '}', account_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(body)
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'User')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UsersApi#invite_classic_agent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # CLASSIC COMPANY ONLY. Send an invitation to join the company as a manager.
-    # Invites a new user to join a company account on Rooms Version 5 as a Manager.
-    # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
-    # @return [User]
-    def invite_classic_manager(account_id, body)
-      data, _status_code, _headers = invite_classic_manager_with_http_info(account_id,  body)
-      return data
-    end
-
-    # CLASSIC COMPANY ONLY. Send an invitation to join the company as a manager.
-    # Invites a new user to join a company account on Rooms Version 5 as a Manager.
-    # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
-    # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
-    def invite_classic_manager_with_http_info(account_id, body)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: UsersApi.invite_classic_manager ..."
-      end
-      # verify the required parameter 'account_id' is set
-      fail ArgumentError, "Missing the required parameter 'account_id' when calling UsersApi.invite_classic_manager" if account_id.nil?
-      # resource path
-      local_var_path = "/v2/accounts/{accountId}/users/invite_classic_manager".sub('{format}','json').sub('{' + 'accountId' + '}', account_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(body)
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'User')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UsersApi#invite_classic_manager\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
     # NON-CLASSIC COMPANY ONLY. Send an invitation to the user or non-user having the given email.
     # Invites a new user to join a company account on Rooms Version 6.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Invitee information (optional parameter)
     # @return [User]
     def invite_user(account_id, body)
       data, _status_code, _headers = invite_user_with_http_info(account_id,  body)
@@ -468,7 +300,7 @@ module DocuSign_Rooms
     # NON-CLASSIC COMPANY ONLY. Send an invitation to the user or non-user having the given email.
     # Invites a new user to join a company account on Rooms Version 6.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Invitee information (optional parameter)
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
     def invite_user_with_http_info(account_id, body)
       if @api_client.config.debugging
@@ -485,7 +317,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -512,7 +344,7 @@ module DocuSign_Rooms
     # Locks the account of the user.
     # @param user_id User Id of the user attempting to be locked.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Details containing the reason the user is being locked out (optional parameter)
     # @return [nil]
     def lock_user(user_id, account_id, body)
       lock_user_with_http_info(user_id, account_id,  body)
@@ -523,7 +355,7 @@ module DocuSign_Rooms
     # Locks the account of the user.
     # @param user_id User Id of the user attempting to be locked.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Details containing the reason the user is being locked out (optional parameter)
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def lock_user_with_http_info(user_id, account_id, body)
       if @api_client.config.debugging
@@ -542,7 +374,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -566,7 +398,7 @@ module DocuSign_Rooms
 
     # Reinvites the pending user with the given userId.
     # Reinvites an unactivated user to join a company account. You can use this method with either Rooms Version 5 or Rooms Version 6.
-    # @param user_id 
+    # @param user_id ID of the user to be invited
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def reinvite_user(user_id, account_id)
@@ -576,7 +408,7 @@ module DocuSign_Rooms
 
     # Reinvites the pending user with the given userId.
     # Reinvites an unactivated user to join a company account. You can use this method with either Rooms Version 5 or Rooms Version 6.
-    # @param user_id 
+    # @param user_id ID of the user to be invited
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def reinvite_user_with_http_info(user_id, account_id)
@@ -596,7 +428,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -650,7 +482,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -676,7 +508,7 @@ module DocuSign_Rooms
     # Removes the user from the designated office.
     # @param user_id The id of the user.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Details of the office that the user will be removed from (optional parameter)
     # @return [nil]
     def remove_user_from_office(user_id, account_id, body)
       remove_user_from_office_with_http_info(user_id, account_id,  body)
@@ -687,7 +519,7 @@ module DocuSign_Rooms
     # Removes the user from the designated office.
     # @param user_id The id of the user.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Details of the office that the user will be removed from (optional parameter)
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def remove_user_from_office_with_http_info(user_id, account_id, body)
       if @api_client.config.debugging
@@ -706,9 +538,9 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json', 'application/xml', 'text/xml', 'application/*+xml'])
 
       # form parameters
       form_params = {}
@@ -732,7 +564,7 @@ module DocuSign_Rooms
     # Removes the user from the designated region.
     # @param user_id The id of the user.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Region that given user will be removed from (optional parameter)
     # @return [nil]
     def remove_user_from_region(user_id, account_id, body)
       remove_user_from_region_with_http_info(user_id, account_id,  body)
@@ -743,7 +575,7 @@ module DocuSign_Rooms
     # Removes the user from the designated region.
     # @param user_id The id of the user.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Region that given user will be removed from (optional parameter)
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def remove_user_from_region_with_http_info(user_id, account_id, body)
       if @api_client.config.debugging
@@ -762,9 +594,9 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json', 'application/xml', 'text/xml', 'application/*+xml'])
 
       # form parameters
       form_params = {}
@@ -816,7 +648,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -842,7 +674,7 @@ module DocuSign_Rooms
     # Updates user information
     # @param user_id The id of the user.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Request body to update the user (optional parameter)
     # @return [User]
     def update_user(user_id, account_id, body)
       data, _status_code, _headers = update_user_with_http_info(user_id, account_id,  body)
@@ -853,7 +685,7 @@ module DocuSign_Rooms
     # Updates user information
     # @param user_id The id of the user.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Request body to update the user (optional parameter)
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
     def update_user_with_http_info(user_id, account_id, body)
       if @api_client.config.debugging
@@ -872,9 +704,9 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json', 'application/xml', 'text/xml', 'application/*+xml'])
 
       # form parameters
       form_params = {}

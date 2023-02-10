@@ -22,9 +22,9 @@ module DocuSign_Rooms
     end
 
     # Creates an external form fill session.
-    # Returns a URL for a new external form fill session, based on the `roomId` and `formId` that you specify in the `formFillSessionForCreate` request body.
+    # Returns a URL for a new external form fill session, based on the `roomId` and `formId` or `formIds` that you specify in the `formFillSessionForCreate` request body.  User may supply up to 10 `formIds`. Eventually, `formId` will be deprecated.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Request body that accepts the `roomId` and `formId` or `formIds` that you specify in the `formFillSessionForCreate` request body. User may supply up to 10 `formIds`. Eventually, `formId` will be deprecated (optional parameter)
     # @return [ExternalFormFillSession]
     def create_external_form_fill_session(account_id, body)
       data, _status_code, _headers = create_external_form_fill_session_with_http_info(account_id,  body)
@@ -32,9 +32,9 @@ module DocuSign_Rooms
     end
 
     # Creates an external form fill session.
-    # Returns a URL for a new external form fill session, based on the &#x60;roomId&#x60; and &#x60;formId&#x60; that you specify in the &#x60;formFillSessionForCreate&#x60; request body.
+    # Returns a URL for a new external form fill session, based on the &#x60;roomId&#x60; and &#x60;formId&#x60; or &#x60;formIds&#x60; that you specify in the &#x60;formFillSessionForCreate&#x60; request body.  User may supply up to 10 &#x60;formIds&#x60;. Eventually, &#x60;formId&#x60; will be deprecated.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Request body that accepts the `roomId` and `formId` or `formIds` that you specify in the `formFillSessionForCreate` request body. User may supply up to 10 `formIds`. Eventually, `formId` will be deprecated (optional parameter)
     # @return [Array<(ExternalFormFillSession, Fixnum, Hash)>] ExternalFormFillSession data, response status code and response headers
     def create_external_form_fill_session_with_http_info(account_id, body)
       if @api_client.config.debugging
@@ -51,9 +51,9 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json', 'application/xml', 'text/xml', 'application/*+xml'])
 
       # form parameters
       form_params = {}

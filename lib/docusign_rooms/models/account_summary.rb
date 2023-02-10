@@ -25,6 +25,28 @@ module DocuSign_Rooms
 
     attr_accessor :require_office_library_assignments
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -42,7 +64,7 @@ module DocuSign_Rooms
       {
         :'company_id' => :'Integer',
         :'name' => :'String',
-        :'company_version' => :'ProductVersion',
+        :'company_version' => :'String',
         :'docu_sign_account_guid' => :'String',
         :'default_field_set_id' => :'String',
         :'require_office_library_assignments' => :'BOOLEAN'
@@ -92,7 +114,19 @@ module DocuSign_Rooms
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      company_version_validator = EnumAttributeValidator.new('String', ['v5', 'v6'])
+      return false unless company_version_validator.valid?(@company_version)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] company_version Object to be assigned
+    def company_version=(company_version)
+      validator = EnumAttributeValidator.new('String', ['v5', 'v6'])
+      unless validator.valid?(company_version)
+        fail ArgumentError, 'invalid value for "company_version", must be one of #{validator.allowable_values}.'
+      end
+      @company_version = company_version
     end
 
     # Checks equality by comparing each attribute.

@@ -42,7 +42,7 @@ module DocuSign_Rooms
     # Create an office.
     # Create an office.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Creates an office with given name and other details like Region,Address (optional parameter)
     # @return [Office]
     def create_office(account_id, body)
       data, _status_code, _headers = create_office_with_http_info(account_id,  body)
@@ -52,7 +52,7 @@ module DocuSign_Rooms
     # Create an office.
     # Create an office.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Creates an office with given name and other details like Region,Address (optional parameter)
     # @return [Array<(Office, Fixnum, Hash)>] Office data, response status code and response headers
     def create_office_with_http_info(account_id, body)
       if @api_client.config.debugging
@@ -69,9 +69,9 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json', 'application/xml', 'text/xml', 'application/*+xml'])
 
       # form parameters
       form_params = {}
@@ -94,7 +94,7 @@ module DocuSign_Rooms
 
     # Delete an office.
     # This method deletes an office from a Rooms account.
-    # @param office_id 
+    # @param office_id Office ID to be deleted
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [nil]
     def delete_office(office_id, account_id)
@@ -104,7 +104,7 @@ module DocuSign_Rooms
 
     # Delete an office.
     # This method deletes an office from a Rooms account.
-    # @param office_id 
+    # @param office_id Office ID to be deleted
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def delete_office_with_http_info(office_id, account_id)
@@ -124,7 +124,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -178,7 +178,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -235,7 +235,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -260,7 +260,7 @@ module DocuSign_Rooms
 
     # Lists the number of objects of each type that reference the office.
     # This method returns a list of each type of object and the number of objects of that type referencing the specified office. Note that an office cannot be deleted while existing objects reference it.
-    # @param office_id 
+    # @param office_id ID of the office
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [OfficeReferenceCountList]
     def get_reference_counts(office_id, account_id)
@@ -270,7 +270,7 @@ module DocuSign_Rooms
 
     # Lists the number of objects of each type that reference the office.
     # This method returns a list of each type of object and the number of objects of that type referencing the specified office. Note that an office cannot be deleted while existing objects reference it.
-    # @param office_id 
+    # @param office_id ID of the office
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
     # @return [Array<(OfficeReferenceCountList, Fixnum, Hash)>] OfficeReferenceCountList data, response status code and response headers
     def get_reference_counts_with_http_info(office_id, account_id)
@@ -290,7 +290,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 

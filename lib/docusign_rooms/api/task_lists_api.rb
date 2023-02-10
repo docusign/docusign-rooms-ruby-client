@@ -25,7 +25,7 @@ module DocuSign_Rooms
     # Applies a task list to a room, based on the `taskTemplateId` that you specify in the `taskList` request body.
     # @param room_id Room ID.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Details for task list creation (optional parameter)
     # @return [TaskList]
     def create_task_list(room_id, account_id, body)
       data, _status_code, _headers = create_task_list_with_http_info(room_id, account_id,  body)
@@ -36,7 +36,7 @@ module DocuSign_Rooms
     # Applies a task list to a room, based on the &#x60;taskTemplateId&#x60; that you specify in the &#x60;taskList&#x60; request body.
     # @param room_id Room ID.
     # @param account_id (Required) The globally unique identifier (GUID) for the account.
-    # @param body  (optional parameter)
+    # @param body Details for task list creation (optional parameter)
     # @return [Array<(TaskList, Fixnum, Hash)>] TaskList data, response status code and response headers
     def create_task_list_with_http_info(room_id, account_id, body)
       if @api_client.config.debugging
@@ -55,7 +55,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -110,7 +110,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 
@@ -164,7 +164,7 @@ module DocuSign_Rooms
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json', 'application/xml', 'text/xml'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])
 

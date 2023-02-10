@@ -49,6 +49,8 @@ module DocuSign_Rooms
 
     attr_accessor :can_connect_to_mortgage_cadence
 
+    attr_accessor :auto_access_to_rooms_in_office_only
+
     attr_accessor :can_view_room_details
 
     attr_accessor :can_view_and_edit_room_details
@@ -67,6 +69,10 @@ module DocuSign_Rooms
 
     attr_accessor :can_delete_owned_documents
 
+    attr_accessor :can_delete_signed_documents
+
+    attr_accessor :can_delete_unsigned_documents
+
     attr_accessor :can_manage_shared_docs
 
     attr_accessor :can_manage_form_groups
@@ -74,6 +80,8 @@ module DocuSign_Rooms
     attr_accessor :can_share_docs_not_owned
 
     attr_accessor :can_create_form_templates
+
+    attr_accessor :can_manage_form_packets
 
     attr_accessor :can_add_tasks_to_any_task_lists
 
@@ -135,6 +143,8 @@ module DocuSign_Rooms
 
     attr_accessor :can_manage_integration_settings
 
+    attr_accessor :can_export_company_usage_report
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -156,6 +166,7 @@ module DocuSign_Rooms
         :'can_manage_room_owners' => :'canManageRoomOwners',
         :'can_delete_rooms' => :'canDeleteRooms',
         :'can_connect_to_mortgage_cadence' => :'canConnectToMortgageCadence',
+        :'auto_access_to_rooms_in_office_only' => :'autoAccessToRoomsInOfficeOnly',
         :'can_view_room_details' => :'canViewRoomDetails',
         :'can_view_and_edit_room_details' => :'canViewAndEditRoomDetails',
         :'can_send_room_details_to_lone_wolf' => :'canSendRoomDetailsToLoneWolf',
@@ -165,10 +176,13 @@ module DocuSign_Rooms
         :'documents_viewable_by_others_in_room_from_office' => :'documentsViewableByOthersInRoomFromOffice',
         :'documents_auto_owned_by_peers' => :'documentsAutoOwnedByPeers',
         :'can_delete_owned_documents' => :'canDeleteOwnedDocuments',
+        :'can_delete_signed_documents' => :'canDeleteSignedDocuments',
+        :'can_delete_unsigned_documents' => :'canDeleteUnsignedDocuments',
         :'can_manage_shared_docs' => :'canManageSharedDocs',
         :'can_manage_form_groups' => :'canManageFormGroups',
         :'can_share_docs_not_owned' => :'canShareDocsNotOwned',
         :'can_create_form_templates' => :'canCreateFormTemplates',
+        :'can_manage_form_packets' => :'canManageFormPackets',
         :'can_add_tasks_to_any_task_lists' => :'canAddTasksToAnyTaskLists',
         :'can_edit_editable_tasks' => :'canEditEditableTasks',
         :'can_edit_any_tasks' => :'canEditAnyTasks',
@@ -198,7 +212,8 @@ module DocuSign_Rooms
         :'can_manage_roles_and_permissions' => :'canManageRolesAndPermissions',
         :'can_manage_room_details' => :'canManageRoomDetails',
         :'can_manage_room_templates' => :'canManageRoomTemplates',
-        :'can_manage_integration_settings' => :'canManageIntegrationSettings'
+        :'can_manage_integration_settings' => :'canManageIntegrationSettings',
+        :'can_export_company_usage_report' => :'canExportCompanyUsageReport'
       }
     end
 
@@ -223,6 +238,7 @@ module DocuSign_Rooms
         :'can_manage_room_owners' => :'BOOLEAN',
         :'can_delete_rooms' => :'BOOLEAN',
         :'can_connect_to_mortgage_cadence' => :'BOOLEAN',
+        :'auto_access_to_rooms_in_office_only' => :'BOOLEAN',
         :'can_view_room_details' => :'BOOLEAN',
         :'can_view_and_edit_room_details' => :'BOOLEAN',
         :'can_send_room_details_to_lone_wolf' => :'BOOLEAN',
@@ -232,10 +248,13 @@ module DocuSign_Rooms
         :'documents_viewable_by_others_in_room_from_office' => :'BOOLEAN',
         :'documents_auto_owned_by_peers' => :'BOOLEAN',
         :'can_delete_owned_documents' => :'BOOLEAN',
+        :'can_delete_signed_documents' => :'BOOLEAN',
+        :'can_delete_unsigned_documents' => :'BOOLEAN',
         :'can_manage_shared_docs' => :'BOOLEAN',
         :'can_manage_form_groups' => :'BOOLEAN',
         :'can_share_docs_not_owned' => :'BOOLEAN',
         :'can_create_form_templates' => :'BOOLEAN',
+        :'can_manage_form_packets' => :'BOOLEAN',
         :'can_add_tasks_to_any_task_lists' => :'BOOLEAN',
         :'can_edit_editable_tasks' => :'BOOLEAN',
         :'can_edit_any_tasks' => :'BOOLEAN',
@@ -265,7 +284,8 @@ module DocuSign_Rooms
         :'can_manage_roles_and_permissions' => :'BOOLEAN',
         :'can_manage_room_details' => :'BOOLEAN',
         :'can_manage_room_templates' => :'BOOLEAN',
-        :'can_manage_integration_settings' => :'BOOLEAN'
+        :'can_manage_integration_settings' => :'BOOLEAN',
+        :'can_export_company_usage_report' => :'BOOLEAN'
       }
     end
 
@@ -349,6 +369,10 @@ module DocuSign_Rooms
         self.can_connect_to_mortgage_cadence = attributes[:'canConnectToMortgageCadence']
       end
 
+      if attributes.has_key?(:'autoAccessToRoomsInOfficeOnly')
+        self.auto_access_to_rooms_in_office_only = attributes[:'autoAccessToRoomsInOfficeOnly']
+      end
+
       if attributes.has_key?(:'canViewRoomDetails')
         self.can_view_room_details = attributes[:'canViewRoomDetails']
       end
@@ -385,6 +409,14 @@ module DocuSign_Rooms
         self.can_delete_owned_documents = attributes[:'canDeleteOwnedDocuments']
       end
 
+      if attributes.has_key?(:'canDeleteSignedDocuments')
+        self.can_delete_signed_documents = attributes[:'canDeleteSignedDocuments']
+      end
+
+      if attributes.has_key?(:'canDeleteUnsignedDocuments')
+        self.can_delete_unsigned_documents = attributes[:'canDeleteUnsignedDocuments']
+      end
+
       if attributes.has_key?(:'canManageSharedDocs')
         self.can_manage_shared_docs = attributes[:'canManageSharedDocs']
       end
@@ -399,6 +431,10 @@ module DocuSign_Rooms
 
       if attributes.has_key?(:'canCreateFormTemplates')
         self.can_create_form_templates = attributes[:'canCreateFormTemplates']
+      end
+
+      if attributes.has_key?(:'canManageFormPackets')
+        self.can_manage_form_packets = attributes[:'canManageFormPackets']
       end
 
       if attributes.has_key?(:'canAddTasksToAnyTaskLists')
@@ -520,6 +556,10 @@ module DocuSign_Rooms
       if attributes.has_key?(:'canManageIntegrationSettings')
         self.can_manage_integration_settings = attributes[:'canManageIntegrationSettings']
       end
+
+      if attributes.has_key?(:'canExportCompanyUsageReport')
+        self.can_export_company_usage_report = attributes[:'canExportCompanyUsageReport']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -558,6 +598,7 @@ module DocuSign_Rooms
           can_manage_room_owners == o.can_manage_room_owners &&
           can_delete_rooms == o.can_delete_rooms &&
           can_connect_to_mortgage_cadence == o.can_connect_to_mortgage_cadence &&
+          auto_access_to_rooms_in_office_only == o.auto_access_to_rooms_in_office_only &&
           can_view_room_details == o.can_view_room_details &&
           can_view_and_edit_room_details == o.can_view_and_edit_room_details &&
           can_send_room_details_to_lone_wolf == o.can_send_room_details_to_lone_wolf &&
@@ -567,10 +608,13 @@ module DocuSign_Rooms
           documents_viewable_by_others_in_room_from_office == o.documents_viewable_by_others_in_room_from_office &&
           documents_auto_owned_by_peers == o.documents_auto_owned_by_peers &&
           can_delete_owned_documents == o.can_delete_owned_documents &&
+          can_delete_signed_documents == o.can_delete_signed_documents &&
+          can_delete_unsigned_documents == o.can_delete_unsigned_documents &&
           can_manage_shared_docs == o.can_manage_shared_docs &&
           can_manage_form_groups == o.can_manage_form_groups &&
           can_share_docs_not_owned == o.can_share_docs_not_owned &&
           can_create_form_templates == o.can_create_form_templates &&
+          can_manage_form_packets == o.can_manage_form_packets &&
           can_add_tasks_to_any_task_lists == o.can_add_tasks_to_any_task_lists &&
           can_edit_editable_tasks == o.can_edit_editable_tasks &&
           can_edit_any_tasks == o.can_edit_any_tasks &&
@@ -600,7 +644,8 @@ module DocuSign_Rooms
           can_manage_roles_and_permissions == o.can_manage_roles_and_permissions &&
           can_manage_room_details == o.can_manage_room_details &&
           can_manage_room_templates == o.can_manage_room_templates &&
-          can_manage_integration_settings == o.can_manage_integration_settings
+          can_manage_integration_settings == o.can_manage_integration_settings &&
+          can_export_company_usage_report == o.can_export_company_usage_report
     end
 
     # @see the `==` method
@@ -612,7 +657,7 @@ module DocuSign_Rooms
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [can_add_users_to_rooms, can_create_rooms, can_submit_rooms_for_review, can_close_rooms, can_reopen_rooms, can_delete_owned_rooms, auto_access_to_rooms, can_export_room_activity_details_people, can_copy_room_details, can_edit_any_room_role, can_edit_invited_room_role, can_edit_room_side, can_manage_any_user_room_access, can_manage_invited_user_room_access, is_hidden_in_room, can_manage_room_owners, can_delete_rooms, can_connect_to_mortgage_cadence, can_view_room_details, can_view_and_edit_room_details, can_send_room_details_to_lone_wolf, can_add_documents, can_add_documents_from_form_groups, can_add_documents_from_form_libraries, documents_viewable_by_others_in_room_from_office, documents_auto_owned_by_peers, can_delete_owned_documents, can_manage_shared_docs, can_manage_form_groups, can_share_docs_not_owned, can_create_form_templates, can_add_tasks_to_any_task_lists, can_edit_editable_tasks, can_edit_any_tasks, can_delete_deletable_tasks, can_delete_any_tasks, can_apply_task_list, can_remove_any_task_list, can_submit_task_list, can_auto_submit_task_list, can_review_task_list, can_auto_approve_task_list, can_manage_task_templates_for_all_regions_all_offices, can_apply_room_templates, can_add_tasks_to_rooms, can_review_any_task, can_manage_docs_on_any_task, can_add_member_and_set_role_lower_access_level, can_add_member_and_set_role_same_access_level, can_change_member_role_lower_access_level, can_change_member_role_same_access_level, can_manage_member_lower_access_level, can_manage_member_same_access_level, can_remove_company_member_lower_access_level, can_remove_company_member_same_access_level, can_manage_account, can_manage_logo, can_manage_roles_and_permissions, can_manage_room_details, can_manage_room_templates, can_manage_integration_settings].hash
+      [can_add_users_to_rooms, can_create_rooms, can_submit_rooms_for_review, can_close_rooms, can_reopen_rooms, can_delete_owned_rooms, auto_access_to_rooms, can_export_room_activity_details_people, can_copy_room_details, can_edit_any_room_role, can_edit_invited_room_role, can_edit_room_side, can_manage_any_user_room_access, can_manage_invited_user_room_access, is_hidden_in_room, can_manage_room_owners, can_delete_rooms, can_connect_to_mortgage_cadence, auto_access_to_rooms_in_office_only, can_view_room_details, can_view_and_edit_room_details, can_send_room_details_to_lone_wolf, can_add_documents, can_add_documents_from_form_groups, can_add_documents_from_form_libraries, documents_viewable_by_others_in_room_from_office, documents_auto_owned_by_peers, can_delete_owned_documents, can_delete_signed_documents, can_delete_unsigned_documents, can_manage_shared_docs, can_manage_form_groups, can_share_docs_not_owned, can_create_form_templates, can_manage_form_packets, can_add_tasks_to_any_task_lists, can_edit_editable_tasks, can_edit_any_tasks, can_delete_deletable_tasks, can_delete_any_tasks, can_apply_task_list, can_remove_any_task_list, can_submit_task_list, can_auto_submit_task_list, can_review_task_list, can_auto_approve_task_list, can_manage_task_templates_for_all_regions_all_offices, can_apply_room_templates, can_add_tasks_to_rooms, can_review_any_task, can_manage_docs_on_any_task, can_add_member_and_set_role_lower_access_level, can_add_member_and_set_role_same_access_level, can_change_member_role_lower_access_level, can_change_member_role_same_access_level, can_manage_member_lower_access_level, can_manage_member_same_access_level, can_remove_company_member_lower_access_level, can_remove_company_member_same_access_level, can_manage_account, can_manage_logo, can_manage_roles_and_permissions, can_manage_room_details, can_manage_room_templates, can_manage_integration_settings, can_export_company_usage_report].hash
     end
 
     # Builds the object from hash
